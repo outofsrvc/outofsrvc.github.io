@@ -1,0 +1,168 @@
+baseURL = "https://outofsrvc.github.io/"
+title = "P01NT"
+enableGitInfo = false
+defaultContentLanguage = "ar"
+defaultContentLanguageInSubdir = true
+theme = "PaperMod"
+
+# Pagination
+[pagination]
+  pagerSize = 10
+
+# Allow raw HTML in content (e.g. <div dir="ltr"> quotation blocks)
+[markup.goldmark.renderer]
+  unsafe = true
+
+# PaperMod client-side search index (Fuse.js)
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[params]
+  description = "P01NT Technical Blog — Reverse Engineering, Low-level Systems, Software Security."
+  author = "P01NT"
+  avatar = "/assets/img/avatar.jpg"
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  socialIcons = [
+    { name = "github", url = "https://github.com/outofsrvc", title = "GitHub" },
+    { name = "twitter", url = "https://twitter.com/outofsrvc", title = "X (Twitter)" },
+    { name = "telegram", url = "https://t.me/outofsrvce", title = "Telegram" },
+    { name = "rss", url = "https://outofsrvc.github.io/index.xml", title = "RSS" },
+  ]
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    minMatchCharLength = 2
+    threshold = 0.4
+    ignoreLocation = true
+    useExtendedSearch = false
+    keys = ["title", "permalink", "summary", "content"]
+    location = 0
+    distance = 100
+
+  # Profile-mode home page (centered card, no post list)
+  [params.profileMode]
+    enabled = true
+    imageUrl = "/assets/img/avatar.jpg"
+    imageTitle = "P01NT"
+    title = "P01NT"
+    subtitle = "Reverse Engineer & Low-level Developer"
+    buttons = [
+      { name = "المقالات", url = "posts/" },
+      { name = "Posts", url = "en/posts/" },
+      { name = "ورشة Entry-P01NT", url = "https://outofsrvc.github.io/entry-p01nt/" },
+      { name = "About", url = "about/" },
+    ]
+
+  # Home info (used when profileMode disabled)
+  [params.homeInfoParams]
+    Title = "P01NT"
+    Content = "مدونة تقنية متخصصة في الهندسة العكسية، تحليل البرمجيات الخبيثة، وأنظمة التشغيل منخفضة المستوى."
+
+# ---------- Arabic (default, served at site root) ----------
+[languages.ar]
+  languageName = "العربية"
+  weight = 1
+  languageDirection = "rtl"
+  contentDir = "content"
+  [languages.ar.params]
+    description = "مدونة P01NT التقنية — هندسة عكسية، أنظمة منخفضة المستوى، أمن برمجيات."
+    homeInfoParams = { Title = "P01NT", Content = "مدونة تقنية متخصصة في الهندسة العكسية، تحليل البرمجيات الخبيثة، وأنظمة التشغيل منخفضة المستوى." }
+  [[languages.ar.menu.main]]
+    identifier = "posts"
+    name = "المقالات"
+    url = "posts/"
+    weight = 10
+  [[languages.ar.menu.main]]
+    identifier = "workshop"
+    name = "ورشة Entry-P01NT"
+    url = "https://outofsrvc.github.io/entry-p01nt/"
+    weight = 20
+  [[languages.ar.menu.main]]
+    identifier = "about"
+    name = "عني"
+    url = "about/"
+    weight = 30
+  [[languages.ar.menu.main]]
+    identifier = "categories"
+    name = "التصنيفات"
+    url = "categories/"
+    weight = 40
+  [[languages.ar.menu.main]]
+    identifier = "tags"
+    name = "الوسوم"
+    url = "tags/"
+    weight = 50
+
+# ---------- English (served under /en/) ----------
+[languages.en]
+  languageName = "English"
+  weight = 2
+  languageDirection = "ltr"
+  contentDir = "content"
+  [languages.en.params]
+    description = "P01NT Technical Blog — Reverse Engineering, Low-level Systems, Software Security."
+    homeInfoParams = { Title = "P01NT", Content = "A technical blog focused on reverse engineering, malware analysis, and low-level systems." }
+  [[languages.en.menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "posts/"
+    weight = 10
+  [[languages.en.menu.main]]
+    identifier = "workshop"
+    name = "Entry-P01NT Workshop"
+    url = "https://outofsrvc.github.io/entry-p01nt/"
+    weight = 20
+  [[languages.en.menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "about/"
+    weight = 30
+  [[languages.en.menu.main]]
+    identifier = "categories"
+    name = "Categories"
+    url = "categories/"
+    weight = 40
+  [[languages.en.menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "tags/"
+    weight = 50
+
+# Taxonomy configuration
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+# Markup configuration
+[markup]
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+    ordered = false
+
+# Sitemap
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+# Robots.txt
+[robots.txt]
+  userAgent = "*"
+  allow = ["/"]
+  disallow = ["/search/", "/404.html"]

@@ -20,13 +20,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0
 
+      # Pinned deliberately. This site needs Hugo >= 0.146 (PaperMod and the
+      # workshop templates both use the new layouts/ lookup), and 0.146.0 is
+      # the version the site is actually verified against. Bump it on purpose
+      # after testing locally — 'latest' would let an upstream release break
+      # the build with no change on our side.
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.146.0'
           extended: true
 
       - name: Build

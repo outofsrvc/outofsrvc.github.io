@@ -1,0 +1,173 @@
+# Project strings — the full UI vocabulary. No theme i18n is merged:
+# PaperMod is disabled, so every key used by layouts/ must exist here.
+
+- id: words
+  translation:
+    one: "1 word"
+    other: "{{ .Count }} words"
+
+- id: read_time
+  translation:
+    one: "1 min read"
+    other: "{{ .Count }} min read"
+
+- id: home
+  translation: "Home"
+
+- id: toc
+  translation: "Table of Contents"
+
+- id: translations
+  translation: "Translations"
+
+- id: prev_page
+  translation: "Previous"
+
+- id: next_page
+  translation: "Next"
+
+- id: code_copy
+  translation: "copy"
+
+- id: code_copied
+  translation: "copied!"
+
+- id: skip_to_content
+  translation: "Skip to content"
+
+- id: search_loading
+  translation: "Loading search..."
+
+- id: search_results
+  translation: "Search results"
+
+- id: search_no_results
+  translation: "No results found."
+
+- id: search_result_count
+  translation: "Results: {{ .Count }}"
+
+- id: search_error
+  translation: "Search could not be loaded. Try refreshing the page."
+
+# ---------- Chrome ----------
+- id: nav_label
+  translation: "Main navigation"
+
+- id: toggle_theme
+  translation: "Toggle theme"
+
+- id: to_top
+  translation: "Back to top"
+
+- id: not_found
+  translation: "segmentation fault — page not found"
+
+- id: empty_section
+  translation: "Nothing here yet."
+
+# ---------- Home ----------
+- id: home_workshop
+  translation: "Workshop"
+
+- id: home_labs
+  translation:
+    one: "1 lab"
+    other: "{{ .Count }} labs"
+
+- id: home_view_curriculum
+  translation: "full curriculum"
+
+- id: home_recent
+  translation: "Recent"
+
+- id: home_all_posts
+  translation: "all posts"
+
+- id: home_topics
+  translation: "Topics"
+
+# ---------- Workshop: stage short tags ----------
+- id: ws_stage_short_foundations
+  translation: "Foundations"
+
+- id: ws_stage_short_deep-dive
+  translation: "Deep Dive"
+
+- id: ws_stage_short_practice
+  translation: "Practice"
+
+# ---------- Workshop: hero ----------
+- id: ws_eyebrow
+  translation: "Hands-on workshop"
+
+- id: ws_start
+  translation: "Start at"
+
+- id: ws_repo
+  translation: "Repository on GitHub"
+
+# ---------- Workshop: stats ----------
+- id: ws_stat_lessons
+  translation: "Lessons"
+
+- id: ws_stat_stages
+  translation: "Stages"
+
+- id: ws_stat_labs
+  translation: "Practical labs"
+
+- id: ws_stat_languages
+  translation: "Languages"
+
+- id: ws_count_lessons
+  translation:
+    one: "1 lesson"
+    other: "{{ .Count }} lessons"
+
+# ---------- Workshop: stages ----------
+- id: ws_stage_title_foundations
+  translation: "Stage 1 — Foundations"
+
+- id: ws_stage_desc_foundations
+  translation: "An entry into reverse engineering, its fundamentals, and how Windows is put together."
+
+- id: ws_stage_title_deep-dive
+  translation: "Stage 2 — Deep Dive"
+
+- id: ws_stage_desc_deep-dive
+  translation: "From source to machine code: program constructs, the attack path, reconnaissance, and tooling."
+
+- id: ws_stage_title_practice
+  translation: "Stage 3 — Practice"
+
+- id: ws_stage_desc_practice
+  translation: "Hands-on labs for mindset, static and dynamic analysis — then where to go after the workshop."
+
+# ---------- Workshop: lesson page ----------
+- id: ws_back
+  translation: "All lessons"
+
+- id: ws_lab_badge
+  translation: "Lab"
+
+- id: ws_lab_title
+  translation: "Lab binary"
+
+- id: ws_lab_note
+  translation: "Download the executable for this lab. Archive password: {{ .password }} — run it inside an isolated virtual machine only."
+
+- id: ws_lab_download
+  translation: "Download"
+
+- id: ws_prev_lesson
+  translation: "Previous lesson"
+
+- id: ws_next_lesson
+  translation: "Next lesson"
+
+- id: ws_done_title
+  translation: "Workshop complete — browse the full curriculum"
+
+- id: ws_done_dir
+  translation: "The end"

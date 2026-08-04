@@ -1,9 +1,9 @@
 baseURL = "https://outofsrvc.github.io/"
 title = "P01NT"
 enableGitInfo = false
+enableRobotsTXT = true
 defaultContentLanguage = "ar"
 defaultContentLanguageInSubdir = true
-theme = "PaperMod"
 
 # Pagination
 [pagination]
@@ -18,24 +18,56 @@ theme = "PaperMod"
   home = ["HTML", "RSS", "JSON"]
 
 [params]
+  # CI sets HUGO_ENV=production for the published build. Local previews stay
+  # noindex unless explicitly built as production.
+  env = "development"
   description = "P01NT Technical Blog — Reverse Engineering, Low-level Systems, Software Security."
+  keywords = ["reverse engineering", "malware analysis", "windows internals", "assembly", "x86", "security"]
   author = "P01NT"
-  avatar = "/assets/img/avatar.jpg"
-  defaultTheme = "auto"
+  DateFormat = "2006-01-02"
+  # Dark-first: the design is built for it, light is the deliberate inversion.
+  defaultTheme = "dark"
   disableThemeToggle = false
+
+  # Only blog articles feed the home/recent listings; workshop lessons live
+  # in their own curriculum section and would otherwise flood the feed.
+  mainSections = ["posts"]
+
   ShowReadingTime = true
   ShowShareButtons = true
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
   ShowCodeCopyButtons = true
   ShowWordCount = true
+  ShowToc = true
+  TocOpen = false
   ShowRssButtonInSectionTermList = true
+  ShowAllPagesInArchive = true
+  hideFooter = false
+
+  # Workshop metadata — read by layouts/workshop/list.html so the curriculum
+  # page stays data-driven (adding a lesson needs no template edits).
+  [params.workshop]
+    repo = "https://github.com/outofsrvc/entry-p01nt"
+    archivePassword = "p01nt"
+
+  [params.assets]
+    favicon = "/favicon.ico"
+    favicon16x16 = "/favicon-16x16.png"
+    favicon32x32 = "/favicon-32x32.png"
+    apple_touch_icon = "/apple-touch-icon.png"
+    safari_pinned_tab = "/safari-pinned-tab.svg"
+    disableFingerprinting = false
+
+  images = ["/assets/img/avatar.svg"]
+
   socialIcons = [
     { name = "github", url = "https://github.com/outofsrvc", title = "GitHub" },
-    { name = "twitter", url = "https://twitter.com/outofsrvc", title = "X (Twitter)" },
+    { name = "x", url = "https://x.com/outofsrvc", title = "X (Twitter)" },
     { name = "telegram", url = "https://t.me/outofsrvce", title = "Telegram" },
-    { name = "rss", url = "https://outofsrvc.github.io/index.xml", title = "RSS" },
+    { name = "rss", url = "index.xml", title = "RSS" },
   ]
+
   [params.fuseOpts]
     isCaseSensitive = false
     shouldSort = true
@@ -47,43 +79,35 @@ theme = "PaperMod"
     location = 0
     distance = 100
 
-  # Profile-mode home page (centered card, no post list)
-  [params.profileMode]
-    enabled = true
-    imageUrl = "/assets/img/avatar.jpg"
-    imageTitle = "P01NT"
-    title = "P01NT"
-    subtitle = "Reverse Engineer & Low-level Developer"
-    buttons = [
-      { name = "المقالات", url = "posts/" },
-      { name = "Posts", url = "en/posts/" },
-      { name = "ورشة Entry-P01NT", url = "https://outofsrvc.github.io/entry-p01nt/" },
-      { name = "About", url = "about/" },
-    ]
+  # Home identity block. Replaces PaperMod's profileMode, which is no longer
+  # used — layouts/index.html renders the home page itself.
+  [params.hero]
+    avatar = "/assets/img/avatar.svg"
 
-  # Home info (used when profileMode disabled)
-  [params.homeInfoParams]
-    Title = "P01NT"
-    Content = "مدونة تقنية متخصصة في الهندسة العكسية، تحليل البرمجيات الخبيثة، وأنظمة التشغيل منخفضة المستوى."
-
-# ---------- Arabic (default, served at site root) ----------
+# ---------- Arabic (default, served under /ar/) ----------
 [languages.ar]
   languageName = "العربية"
+  languageCode = "ar"
   weight = 1
   languageDirection = "rtl"
   contentDir = "content"
+  title = "P01NT"
   [languages.ar.params]
-    description = "مدونة P01NT التقنية — هندسة عكسية، أنظمة منخفضة المستوى، أمن برمجيات."
-    homeInfoParams = { Title = "P01NT", Content = "مدونة تقنية متخصصة في الهندسة العكسية، تحليل البرمجيات الخبيثة، وأنظمة التشغيل منخفضة المستوى." }
+    description = "مدونة P01NT التقنية — هندسة عكسية، أنظمة منخفضة المستوى، وأمن برمجيات."
+    [languages.ar.params.hero]
+      avatar = "/assets/img/avatar.svg"
+      name = "P01NT"
+      role = "مهندس عكسي ومطور أنظمة منخفضة المستوى"
+      bio = "أكتب هنا عن الهندسة العكسية وتحليل البرمجيات الخبيثة وما يجري تحت طبقة التجريد. الموقع يضم أيضاً ورشة Entry-P01NT كاملة."
+  [[languages.ar.menu.main]]
+    identifier = "workshop"
+    name = "الورشة"
+    url = "workshop/"
+    weight = 10
   [[languages.ar.menu.main]]
     identifier = "posts"
     name = "المقالات"
     url = "posts/"
-    weight = 10
-  [[languages.ar.menu.main]]
-    identifier = "workshop"
-    name = "ورشة Entry-P01NT"
-    url = "https://outofsrvc.github.io/entry-p01nt/"
     weight = 20
   [[languages.ar.menu.main]]
     identifier = "about"
@@ -91,34 +115,40 @@ theme = "PaperMod"
     url = "about/"
     weight = 30
   [[languages.ar.menu.main]]
-    identifier = "categories"
-    name = "التصنيفات"
-    url = "categories/"
-    weight = 40
-  [[languages.ar.menu.main]]
     identifier = "tags"
     name = "الوسوم"
     url = "tags/"
+    weight = 40
+  [[languages.ar.menu.main]]
+    identifier = "search"
+    name = "بحث"
+    url = "search/"
     weight = 50
 
 # ---------- English (served under /en/) ----------
 [languages.en]
   languageName = "English"
+  languageCode = "en"
   weight = 2
   languageDirection = "ltr"
   contentDir = "content"
+  title = "P01NT"
   [languages.en.params]
     description = "P01NT Technical Blog — Reverse Engineering, Low-level Systems, Software Security."
-    homeInfoParams = { Title = "P01NT", Content = "A technical blog focused on reverse engineering, malware analysis, and low-level systems." }
+    [languages.en.params.hero]
+      avatar = "/assets/img/avatar.svg"
+      name = "P01NT"
+      role = "Reverse Engineer & Low-level Developer"
+      bio = "I write about reverse engineering, malware analysis, and what happens beneath the abstraction layer. This site also hosts the full Entry-P01NT workshop."
+  [[languages.en.menu.main]]
+    identifier = "workshop"
+    name = "Workshop"
+    url = "workshop/"
+    weight = 10
   [[languages.en.menu.main]]
     identifier = "posts"
     name = "Posts"
     url = "posts/"
-    weight = 10
-  [[languages.en.menu.main]]
-    identifier = "workshop"
-    name = "Entry-P01NT Workshop"
-    url = "https://outofsrvc.github.io/entry-p01nt/"
     weight = 20
   [[languages.en.menu.main]]
     identifier = "about"
@@ -126,33 +156,34 @@ theme = "PaperMod"
     url = "about/"
     weight = 30
   [[languages.en.menu.main]]
-    identifier = "categories"
-    name = "Categories"
-    url = "categories/"
-    weight = 40
-  [[languages.en.menu.main]]
     identifier = "tags"
     name = "Tags"
     url = "tags/"
+    weight = 40
+  [[languages.en.menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "search/"
     weight = 50
 
 # Taxonomy configuration
 [taxonomies]
   category = "categories"
   tag = "tags"
-  series = "series"
 
 # Markup configuration
 [markup]
+  # noClasses=false emits CSS classes so PaperMod's bundled chroma stylesheet
+  # can recolour code for light and dark themes. Do not set `style` here — it
+  # only applies when highlighting is inlined.
   [markup.highlight]
     noClasses = false
     codeFences = true
     guessSyntax = true
-    lineNos = true
-    lineNumbersInTable = true
+    lineNos = false
   [markup.tableOfContents]
     startLevel = 2
-    endLevel = 6
+    endLevel = 4
     ordered = false
 
 # Sitemap
@@ -160,9 +191,3 @@ theme = "PaperMod"
   changefreq = "weekly"
   priority = 0.5
   filename = "sitemap.xml"
-
-# Robots.txt
-[robots.txt]
-  userAgent = "*"
-  allow = ["/"]
-  disallow = ["/search/", "/404.html"]

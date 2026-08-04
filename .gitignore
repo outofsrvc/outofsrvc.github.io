@@ -1,8 +1,12 @@
 # Hugo
 /public/
+/resources/
 /hugo.exe
 /hugo.zip
 /.hugo_build.lock
+
+# Local-only copy of the old PaperMod theme (site now uses its own layouts/)
+/themes_disabled/
 
 # IDE
 .vscode/

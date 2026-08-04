@@ -1,0 +1,356 @@
+/* ============================================================================
+   P01NT — workshop
+   The curriculum reads as a dense index: fixed-width hex column, title, dotted
+   leader, duration. Stage identity comes from a single accent per group.
+   ========================================================================= */
+
+/* ---------- Banner ------------------------------------------------------- */
+.wsbanner {
+    position: relative;
+    border: var(--hair) solid var(--line);
+    border-radius: var(--r);
+    background:
+        linear-gradient(180deg, var(--bg-2), var(--bg));
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+}
+
+/* Faint grid, like a hex editor backdrop. */
+.wsbanner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--line) var(--hair), transparent var(--hair)),
+        linear-gradient(90deg, var(--line) var(--hair), transparent var(--hair));
+    background-size: 28px 28px;
+    opacity: .35;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000, transparent 75%);
+    pointer-events: none;
+}
+
+.wsbanner>* {
+    position: relative;
+}
+
+.wsbanner__name {
+    font-family: var(--mono);
+    font-size: var(--t-2xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -.01em;
+    direction: ltr;
+    text-align: start;
+}
+
+html[dir="rtl"] .wsbanner__name {
+    text-align: right;
+}
+
+.wsbanner__desc {
+    margin-top: .9rem;
+    color: var(--fg-2);
+    max-width: var(--measure);
+}
+
+.wsbanner__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem .5rem;
+    margin-top: 1.25rem;
+}
+
+.fact {
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    color: var(--fg-2);
+    border: var(--hair) solid var(--line-2);
+    border-radius: var(--r);
+    padding: .25rem .55rem;
+    direction: ltr;
+}
+
+.fact b {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+.wsbanner__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    font-family: var(--mono);
+    font-size: var(--t-sm);
+    padding: .45rem .9rem;
+    border-radius: var(--r);
+    border: var(--hair) solid var(--line-2);
+    color: var(--fg);
+    transition: color .15s, border-color .15s, background .15s;
+}
+
+.btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-bg);
+}
+
+.btn--primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+}
+
+.btn--primary:hover {
+    background: var(--accent-2);
+    border-color: var(--accent-2);
+    color: var(--bg);
+}
+
+/* ---------- Stage group -------------------------------------------------- */
+.wsstage {
+    margin-bottom: 2.5rem;
+}
+
+.wsstage__head {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding-bottom: .5rem;
+    border-bottom: var(--hair) solid var(--line);
+}
+
+.wsstage__tag {
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--stage);
+    border: var(--hair) solid color-mix(in srgb, var(--stage) 45%, transparent);
+    border-radius: var(--r);
+    padding: .15rem .5rem;
+    white-space: nowrap;
+}
+
+.wsstage__title {
+    font-size: var(--t-base);
+    font-weight: 550;
+    color: var(--fg-2);
+}
+
+.wsstage__count {
+    margin-inline-start: auto;
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    color: var(--fg-3);
+    white-space: nowrap;
+}
+
+.wsstage__desc {
+    margin-top: .6rem;
+    color: var(--fg-3);
+    font-size: var(--t-sm);
+    max-width: var(--measure);
+}
+
+/* ---------- Lesson index rows -------------------------------------------- */
+.wslist {
+    margin-top: .75rem;
+}
+
+.wsrow {
+    display: grid;
+    grid-template-columns: 3.25rem 1fr auto;
+    align-items: baseline;
+    gap: 0 .9rem;
+    padding: .7rem .75rem;
+    border-inline-start: 2px solid transparent;
+    border-radius: var(--r);
+    transition: background .15s, border-color .15s;
+}
+
+.wsrow:hover {
+    background: var(--bg-2);
+    border-inline-start-color: var(--stage);
+}
+
+.wsrow__hex {
+    font-family: var(--mono);
+    font-size: var(--t-sm);
+    font-weight: 600;
+    color: var(--stage);
+    direction: ltr;
+    text-align: start;
+}
+
+html[dir="rtl"] .wsrow__hex {
+    text-align: right;
+}
+
+.wsrow__title {
+    font-size: var(--t-base);
+    font-weight: 550;
+    color: var(--fg);
+    direction: ltr;
+    text-align: start;
+    transition: color .15s;
+}
+
+html[dir="rtl"] .wsrow__title {
+    text-align: right;
+}
+
+.wsrow:hover .wsrow__title {
+    color: var(--accent);
+}
+
+.wsrow__desc {
+    grid-column: 2;
+    margin-top: .2rem;
+    color: var(--fg-3);
+    font-size: var(--t-sm);
+    max-width: var(--measure);
+}
+
+.wsrow__right {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    color: var(--fg-3);
+    white-space: nowrap;
+    direction: ltr;
+}
+
+.tag-lab {
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--stage, var(--accent));
+    border: var(--hair) solid color-mix(in srgb, var(--stage, var(--accent)) 45%, transparent);
+    border-radius: var(--r);
+    padding: .05rem .35rem;
+}
+
+/* ---------- Lesson page chrome ------------------------------------------- */
+.wslesson__bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .6rem;
+    margin-bottom: 1rem;
+}
+
+.wslesson__hex {
+    font-family: var(--mono);
+    font-size: var(--t-sm);
+    font-weight: 600;
+    color: var(--stage);
+    border: var(--hair) solid color-mix(in srgb, var(--stage) 45%, transparent);
+    border-radius: var(--r);
+    padding: .1rem .45rem;
+    direction: ltr;
+}
+
+.wslesson__stage {
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--stage);
+}
+
+.wslesson__pos {
+    margin-inline-start: auto;
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    color: var(--fg-3);
+    direction: ltr;
+}
+
+.wsprog {
+    width: 84px;
+    height: 3px;
+    background: var(--line-2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.wsprog__fill {
+    display: block;
+    height: 100%;
+    background: var(--stage);
+}
+
+/* ---------- Lab callout -------------------------------------------------- */
+.wslab {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .9rem;
+    border: var(--hair) solid color-mix(in srgb, var(--stage, var(--accent)) 35%, var(--line));
+    border-radius: var(--r);
+    background: var(--bg-2);
+    padding: .9rem 1.1rem;
+    margin-top: 1.75rem;
+}
+
+.wslab__body {
+    flex: 1 1 16rem;
+    min-width: 0;
+}
+
+.wslab__title {
+    display: block;
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--stage, var(--accent));
+}
+
+.wslab__note {
+    display: block;
+    margin-top: .3rem;
+    font-size: var(--t-sm);
+    color: var(--fg-2);
+}
+
+.wslab__note code {
+    font-family: var(--mono);
+    background: var(--bg-3);
+    border: var(--hair) solid var(--line);
+    border-radius: 2px;
+    padding: .05em .35em;
+}
+
+@media (max-width: 720px) {
+
+    .wsrow {
+        grid-template-columns: 2.75rem 1fr;
+    }
+
+    .wsrow__right {
+        grid-column: 2;
+        margin-top: .35rem;
+    }
+
+    html[dir="rtl"] .wsrow__right {
+        justify-content: flex-end;
+    }
+}

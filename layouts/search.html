@@ -1,0 +1,14 @@
+{{- define "main" }}
+<header class="pagehead">
+  <h1 class="pagehead__title">{{ .Title }}</h1>
+  {{- with .Description }}<p class="pagehead__desc">{{ . }}</p>{{ end }}
+</header>
+
+<div id="searchbox">
+  <input id="searchInput" disabled autocomplete="off" spellcheck="false" maxlength="64" type="search"
+    aria-label="{{ .Title }}" aria-controls="searchResults" aria-describedby="searchStatus"
+    placeholder="{{ .Params.placeholder | default .Title }}">
+  <p id="searchStatus" role="status" aria-live="polite">{{ i18n "search_loading" }}</p>
+  <ul id="searchResults" aria-label="{{ i18n "search_results" }}" aria-busy="true"></ul>
+</div>
+{{- end }}

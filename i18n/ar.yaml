@@ -1,0 +1,175 @@
+# Project strings — the full UI vocabulary. No theme i18n is merged:
+# PaperMod is disabled, so every key used by layouts/ must exist here.
+
+- id: words
+  translation:
+    one: "كلمة واحدة"
+    other: "{{ .Count }} كلمة"
+
+- id: read_time
+  translation:
+    one: "دقيقة واحدة"
+    other: "{{ .Count }} دقائق قراءة"
+
+- id: home
+  translation: "الرئيسية"
+
+- id: toc
+  translation: "المحتويات"
+
+- id: translations
+  translation: "الترجمات"
+
+- id: prev_page
+  translation: "السابق"
+
+- id: next_page
+  translation: "التالي"
+
+- id: code_copy
+  translation: "نسخ"
+
+- id: code_copied
+  translation: "تم النسخ!"
+
+- id: skip_to_content
+  translation: "تجاوز إلى المحتوى"
+
+- id: search_loading
+  translation: "جارٍ تحميل البحث..."
+
+- id: search_results
+  translation: "نتائج البحث"
+
+- id: search_no_results
+  translation: "لا توجد نتائج."
+
+- id: search_result_count
+  translation: "عدد النتائج: {{ .Count }}"
+
+- id: search_error
+  translation: "تعذر تحميل البحث. حاول تحديث الصفحة."
+
+# ---------- Chrome ----------
+- id: nav_label
+  translation: "التنقل الرئيسي"
+
+- id: toggle_theme
+  translation: "تبديل السمة"
+
+- id: to_top
+  translation: "العودة للأعلى"
+
+- id: not_found
+  translation: "خطأ في العنوان — الصفحة غير موجودة"
+
+- id: empty_section
+  translation: "لا يوجد شيء هنا بعد."
+
+# ---------- Home ----------
+- id: home_workshop
+  translation: "الورشة"
+
+- id: home_labs
+  translation:
+    one: "معمل واحد"
+    two: "معملان"
+    other: "{{ .Count }} معامل"
+
+- id: home_view_curriculum
+  translation: "المنهج كاملاً"
+
+- id: home_recent
+  translation: "أحدث المقالات"
+
+- id: home_all_posts
+  translation: "كل المقالات"
+
+- id: home_topics
+  translation: "المواضيع"
+
+# ---------- Workshop: stage short tags ----------
+- id: ws_stage_short_foundations
+  translation: "تأسيس"
+
+- id: ws_stage_short_deep-dive
+  translation: "تعمّق"
+
+- id: ws_stage_short_practice
+  translation: "تطبيق"
+
+# ---------- Workshop: hero ----------
+- id: ws_eyebrow
+  translation: "ورشة عمل تطبيقية"
+
+- id: ws_start
+  translation: "ابدأ من"
+
+- id: ws_repo
+  translation: "المستودع على GitHub"
+
+# ---------- Workshop: stats ----------
+- id: ws_stat_lessons
+  translation: "درساً"
+
+- id: ws_stat_stages
+  translation: "مراحل"
+
+- id: ws_stat_labs
+  translation: "معملاً تطبيقياً"
+
+- id: ws_stat_languages
+  translation: "لغتان"
+
+- id: ws_count_lessons
+  translation:
+    one: "درس واحد"
+    two: "درسان"
+    other: "{{ .Count }} دروس"
+
+# ---------- Workshop: stages ----------
+- id: ws_stage_title_foundations
+  translation: "المرحلة الأولى — التأسيس"
+
+- id: ws_stage_desc_foundations
+  translation: "مدخل إلى الهندسة العكسية، أساسياتها، ومعمارية نظام ويندوز."
+
+- id: ws_stage_title_deep-dive
+  translation: "المرحلة الثانية — التحليل العميق"
+
+- id: ws_stage_desc_deep-dive
+  translation: "من الكود إلى لغة الآلة: البنى البرمجية، مسار الهجوم، الاستطلاع، والأدوات."
+
+- id: ws_stage_title_practice
+  translation: "المرحلة الثالثة — التطبيق العملي"
+
+- id: ws_stage_desc_practice
+  translation: "معامل تطبيقية لبناء العقلية وللتحليل الثابت والديناميكي، ثم خارطة ما بعد الورشة."
+
+# ---------- Workshop: lesson page ----------
+- id: ws_back
+  translation: "كل الدروس"
+
+- id: ws_lab_badge
+  translation: "معمل"
+
+- id: ws_lab_title
+  translation: "ملف المعمل"
+
+- id: ws_lab_note
+  translation: "حمّل الملف التنفيذي الخاص بهذا المعمل. كلمة فك الضغط: {{ .password }} — شغّله داخل جهاز افتراضي معزول فقط."
+
+- id: ws_lab_download
+  translation: "تحميل الملف"
+
+- id: ws_prev_lesson
+  translation: "الدرس السابق"
+
+- id: ws_next_lesson
+  translation: "الدرس التالي"
+
+- id: ws_done_title
+  translation: "أتممت الورشة — تصفّح المنهج كاملاً"
+
+- id: ws_done_dir
+  translation: "النهاية"

@@ -1,0 +1,95 @@
+{{- /* Replaces PaperMod's head entirely.
+
+       Kept from the theme: SEO meta, OpenGraph / Twitter / schema partials,
+       favicons, RSS + hreflang alternates, and the Fuse.js search bundle.
+       Replaced: the stylesheet. None of PaperMod's CSS is loaded — assets/css/
+       is the whole design system. */ -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
+<meta name="robots" content="index, follow">
+{{- else }}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
+
+<title>{{ if not .IsHome }}{{ with .Title }}{{ . }} · {{ end }}{{ end }}{{ site.Title }}</title>
+
+{{- /* Meta */}}
+{{- if .IsHome }}
+{{ with site.Params.keywords -}}<meta name="keywords" content="{{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">{{ end }}
+{{- else }}
+<meta name="keywords" content="{{ if .Params.keywords -}}
+    {{- range $i, $e := .Params.keywords }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- else }}
+    {{- range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- end -}}">
+{{- end }}
+<meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if or .IsPage .IsSection}}
+    {{- .Summary | default (printf "%s - %s" .Title site.Title) }}{{- else }}
+    {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
+<meta name="author" content="{{ site.Params.author }}">
+<link rel="canonical" href="{{ if .Params.canonicalURL -}}{{ trim .Params.canonicalURL " " }}{{- else -}}{{ .Permalink }}{{- end }}">
+
+{{- /* Fonts. IBM Plex is one superfamily across mono, Latin and Arabic, which
+       is what keeps the two language builds looking like one site. */}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+
+{{- /* Styles — ours only, concatenated in filename order. */}}
+{{- $css := (resources.Match "css/*.css") | resources.Concat "assets/css/p01nt.css" | resources.Minify }}
+{{- if not site.Params.assets.disableFingerprinting }}
+{{- $css = $css | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+{{- else }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{- end }}
+
+{{- /* Search — PaperMod's Fuse bundle; our search.html keeps the DOM ids it expects. */}}
+{{- if (eq .Layout `search`) }}
+{{- with site.Home.OutputFormats.Get "JSON" }}
+<link crossorigin="anonymous" rel="preload" as="fetch" href="{{ .RelPermalink }}">
+<meta name="search-index" content="{{ .RelPermalink }}">
+{{- end }}
+{{- $fastsearch := resources.Get "js/fastsearch.js" | js.Build (dict "params" (dict "fuseOpts" site.Params.fuseOpts)) | resources.Minify }}
+{{- $fusejs := resources.Get "js/fuse.basic.min.js" }}
+{{- $search := (slice $fusejs $fastsearch) | resources.Concat "assets/js/search.js" | fingerprint }}
+<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}"></script>
+{{- end }}
+
+{{- /* Favicons */}}
+<link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
+<link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
+<meta name="theme-color" content="#0a0c10">
+
+{{- /* RSS + language alternates */}}
+{{ range .AlternativeOutputFormats -}}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ .Name }}">
+{{ end -}}
+{{- range .AllTranslations -}}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+{{ end -}}
+
+{{- /* Resolve the theme before first paint so there is no flash. */}}
+<script>
+    (function () {
+        var s = null;
+        try { s = localStorage.getItem("pref-theme"); } catch (e) {}
+        var d = s ? s : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.dataset.theme = d;
+    })();
+</script>
+<noscript>
+    <style>
+        #theme-toggle,
+        .totop {
+            display: none;
+        }
+    </style>
+</noscript>
+
+{{- if hugo.IsProduction | or (eq site.Params.env "production") }}
+{{- partial "templates/opengraph.html" . }}
+{{- partial "templates/twitter_cards.html" . }}
+{{- partial "templates/schema_json.html" . }}
+{{- end -}}

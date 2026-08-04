@@ -1,0 +1,23 @@
+{{- define "main" }}
+{{- /* Taxonomy index (/tags/, /categories/). Markup contract: .pagehead
+       header + .chips/.chip cloud with counts. */ -}}
+{{- partial "crumb.html" . }}
+
+<header class="pagehead">
+  <h1 class="pagehead__title">{{ .Title }}</h1>
+  {{- with .Description }}<p class="pagehead__desc">{{ . }}</p>{{ end }}
+</header>
+
+{{- if .Content }}
+<div class="prose" style="margin-bottom:2rem">{{ .Content }}</div>
+{{- end }}
+
+<div class="chips">
+  {{- $type := .Type }}
+  {{- range $key, $value := .Data.Terms.Alphabetical }}
+  {{- with site.GetPage (printf "/%s/%s" $type .Name) }}
+  <a class="chip" href="{{ .Permalink }}">{{ .LinkTitle }}<span class="chip__n">{{ $value.Count }}</span></a>
+  {{- end }}
+  {{- end }}
+</div>
+{{- end }}{{- /* end main */ -}}

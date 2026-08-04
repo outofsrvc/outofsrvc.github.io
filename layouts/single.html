@@ -1,0 +1,67 @@
+{{- define "main" }}
+{{- /* Blog article. Markup contract: .article__title/.article__desc/.meta
+       (30-components.css), body typography via .prose, tags via .chips. */ -}}
+{{- $categories := .GetTerms "categories" }}
+{{- $catName := "general" }}
+{{- $catSlug := "general" }}
+{{- if gt (len $categories) 0 }}
+  {{- $primaryCategory := index $categories 0 }}
+  {{- $catName = $primaryCategory.LinkTitle }}
+  {{- $catSlug = $primaryCategory.Slug }}
+{{- end }}
+
+<article>
+  {{- partial "crumb.html" . }}
+
+  <header class="pagehead">
+    <div class="post__bar">
+      <span class="post__cat" data-category="{{ $catSlug }}">{{ $catName }}</span>
+      <span class="post__date">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+      </span>
+    </div>
+
+    <h1 class="article__title">
+      {{- .Title -}}
+      {{- if .Draft }} <span class="label">draft</span>{{ end -}}
+    </h1>
+    {{- with .Description }}<p class="article__desc">{{ . }}</p>{{ end }}
+    <div class="meta">
+      {{- partial "meta.html" . -}}
+      {{- partial "translation_list.html" . -}}
+    </div>
+  </header>
+
+  {{- if and (.Param "ShowToc") .TableOfContents }}
+  {{- partial "toc.html" . }}
+  {{- end }}
+
+  {{- if .Content }}
+  <div class="prose article__body">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+
+  {{- partial "extend_post_content.html" . }}
+
+  <footer class="article__foot">
+    {{- with .GetTerms "tags" }}
+    <div class="chips">
+      {{- range . }}<a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+    </div>
+    {{- end }}
+    {{- if (.Param "ShowPostNavLinks") }}
+    {{- partial "post_nav_links.html" . }}
+    {{- end }}
+    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
+    {{- partial "share_icons.html" . -}}
+    {{- end }}
+  </footer>
+
+  {{- if (.Param "comments") }}
+  {{- partial "comments.html" . }}
+  {{- end }}
+</article>
+{{- end }}

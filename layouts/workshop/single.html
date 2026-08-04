@@ -1,0 +1,82 @@
+{{- define "main" }}
+{{- /* A lesson. Prev/next are scoped to the curriculum (by weight), not to the
+       global post feed, so the reading order matches the syllabus. */ -}}
+{{- $lessons := .CurrentSection.RegularPages.ByWeight }}
+{{- $total := len $lessons }}
+{{- $idx := 0 }}
+{{- range $i, $p := $lessons }}
+  {{- if eq $p.RelPermalink $.RelPermalink }}{{ $idx = $i }}{{ end }}
+{{- end }}
+{{- $prev := false }}{{ if gt $idx 0 }}{{ $prev = index $lessons (sub $idx 1) }}{{ end }}
+{{- $next := false }}{{ if lt $idx (sub $total 1) }}{{ $next = index $lessons (add $idx 1) }}{{ end }}
+{{- $stage := .Params.stage | default "foundations" }}
+
+<article data-stage="{{ $stage }}">
+  {{- partial "crumb.html" . }}
+
+  <header class="pagehead">
+    <div class="wslesson__bar">
+      <span class="wslesson__hex">{{ .Params.hex }}</span>
+      <span class="wslesson__stage">{{ i18n (printf "ws_stage_short_%s" $stage) }}</span>
+      <span class="wslesson__pos">
+        <span class="wsprog" role="img" aria-label="{{ printf "%d / %d" (add $idx 1) $total }}">
+          <span class="wsprog__fill" style="width:{{ math.Round (mul (div (float (add $idx 1)) (float $total)) 100) }}%"></span>
+        </span>
+        <span>{{ printf "%02d/%02d" (add $idx 1) $total }}</span>
+      </span>
+    </div>
+
+    <h1 class="article__title">{{ .Title }}</h1>
+    {{- with .Description }}<p class="article__desc">{{ . }}</p>{{ end }}
+    <div class="meta">{{ partial "meta.html" . }}</div>
+  </header>
+
+  {{- with .Params.lab }}
+  <div class="wslab">
+    <span class="wslab__body">
+      <span class="wslab__title">{{ i18n "ws_lab_title" }}</span>
+      <span class="wslab__note">
+        {{- i18n "ws_lab_note" (dict "password" (printf "<code>%s</code>" ($.Params.labPassword | default site.Params.workshop.archivePassword))) | safeHTML -}}
+      </span>
+    </span>
+    <a class="btn" href="{{ . | relURL }}" download>{{ i18n "ws_lab_download" }}</a>
+  </div>
+  {{- end }}
+
+  {{- if and (.Param "ShowToc") .TableOfContents }}
+  {{- partial "toc.html" . }}
+  {{- end }}
+
+  <div class="prose article__body">
+    {{ .Content }}
+  </div>
+
+  <footer class="article__foot">
+    {{- with .GetTerms "tags" }}
+    <div class="chips">
+      {{- range . }}<a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+    </div>
+    {{- end }}
+
+    <nav class="pn">
+      {{- with $prev }}
+      <a class="pn__item pn__item--prev" href="{{ .RelPermalink }}">
+        <span class="pn__dir">{{ i18n "ws_prev_lesson" }}</span>
+        <span class="pn__title">{{ .Params.hex }} · {{ .Title }}</span>
+      </a>
+      {{- end }}
+      {{- if $next }}
+      <a class="pn__item pn__item--next" href="{{ $next.RelPermalink }}">
+        <span class="pn__dir">{{ i18n "ws_next_lesson" }}</span>
+        <span class="pn__title">{{ $next.Params.hex }} · {{ $next.Title }}</span>
+      </a>
+      {{- else }}
+      <a class="pn__item pn__item--full" href="{{ .CurrentSection.RelPermalink }}">
+        <span class="pn__dir">{{ i18n "ws_done_dir" }}</span>
+        <span class="pn__title">{{ i18n "ws_done_title" }}</span>
+      </a>
+      {{- end }}
+    </nav>
+  </footer>
+</article>
+{{- end }}

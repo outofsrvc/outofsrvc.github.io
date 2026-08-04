@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Lang }}" dir="{{ .Language.LanguageDirection | default "ltr" }}" data-theme="dark">
+
+<head>
+    {{- partial "head.html" . }}
+</head>
+
+<body id="top">
+    <a class="skip-link" href="#main-content">{{ i18n "skip_to_content" | default "Skip to content" }}</a>
+    {{- partial "header.html" . }}
+    <main id="main-content" class="main" tabindex="-1">
+        <div class="shell">
+            {{- block "main" . }}{{ end }}
+        </div>
+    </main>
+    {{- partial "footer.html" . }}
+</body>
+
+</html>

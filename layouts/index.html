@@ -1,0 +1,94 @@
+{{- define "main" }}
+{{- $ws := site.GetPage "/workshop" }}
+{{- $lessons := slice }}
+{{- with $ws }}{{ $lessons = .RegularPages.ByWeight }}{{ end }}
+{{- $posts := where site.RegularPages "Section" "posts" }}
+{{- $hero := site.Params.hero }}
+
+{{- /* Identity block. Replaces PaperMod's profileMode, which rendered an
+       almost empty page (avatar, name, one line and nothing else). */}}
+<section class="hero">
+  {{- with $hero.avatar }}
+  <img class="hero__avatar" src="{{ . | relURL }}" alt="{{ $hero.name | default site.Title }}" width="84" height="84">
+  {{- end }}
+  <div>
+    <h1 class="hero__name">{{ $hero.name | default site.Title }}</h1>
+    {{- with $hero.role }}<p class="hero__role">{{ . }}</p>{{ end }}
+    {{- with $hero.bio }}<p class="hero__bio">{{ . }}</p>{{ end }}
+    <div class="hero__links">
+      {{- range site.Params.socialIcons }}
+      <a class="hero__link" href="{{ .url }}" rel="noopener me" target="_blank">{{ .name }}</a>
+      {{- end }}
+    </div>
+  </div>
+</section>
+
+{{- /* Workshop teaser */}}
+{{- with $ws }}
+{{- $labs := where $lessons "Params.lab" "!=" nil }}
+<section class="block">
+  <div class="rule">
+    <span class="label">{{ i18n "home_workshop" | default "Workshop" }}</span>
+    <a class="rule__link" href="{{ .RelPermalink }}">{{ i18n "home_view_curriculum" | default "curriculum" }} →</a>
+  </div>
+
+  <div class="wsteaser">
+    <div class="wsteaser__top">
+      <a class="wsteaser__name" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <span class="wsteaser__facts">
+        {{ i18n "ws_count_lessons" (len $lessons) }} · {{ i18n "home_labs" (len $labs) }}
+      </span>
+    </div>
+    {{- with .Description }}<p class="wsteaser__desc">{{ . }}</p>{{ end }}
+    <div class="wsteaser__stages">
+      {{- range $stage := slice "foundations" "deep-dive" "practice" }}
+      {{- $g := where $lessons "Params.stage" $stage }}
+      {{- if $g }}
+      <div class="stagecard" data-stage="{{ $stage }}">
+        <span class="stagecard__name">{{ i18n (printf "ws_stage_short_%s" $stage) }}</span>
+        <span class="stagecard__n">
+          {{- (index $g 0).Params.hex }} – {{ (index $g (sub (len $g) 1)).Params.hex }}
+        </span>
+      </div>
+      {{- end }}
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end }}
+
+{{- /* Recent posts */}}
+{{- with $posts }}
+<section class="block">
+  <div class="rule">
+    <span class="label">{{ i18n "home_recent" | default "Recent" }}</span>
+    <a class="rule__link" href="{{ "posts/" | absLangURL }}">{{ i18n "home_all_posts" | default "all posts" }} →</a>
+  </div>
+  <div class="rows">
+    {{- range first 6 . }}
+    <a class="row" href="{{ .RelPermalink }}">
+      <time class="row__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+      <div>
+        <span class="row__title">{{ .Title }}</span>
+        {{- with .Description }}<span class="row__desc">{{ . }}</span>{{ end }}
+      </div>
+    </a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+
+{{- /* Tag cloud */}}
+{{- with site.Taxonomies.tags }}
+<section class="block">
+  <div class="rule">
+    <span class="label">{{ i18n "home_topics" | default "Topics" }}</span>
+  </div>
+  <div class="chips">
+    {{- range $name, $terms := . }}
+    <a class="chip" href="{{ (printf "tags/%s/" ($name | urlize)) | absLangURL }}">{{ $name }}<span class="chip__n">{{ len $terms }}</span></a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+{{- end }}

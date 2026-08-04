@@ -1,0 +1,59 @@
+{{- /* Site chrome header. Markup contract is assets/css/20-base.css:
+       .head > .head__inner > .brand + .nav (.nav__link / .nav__sep / .iconbtn,
+       theme icons .i-sun / .i-moon switched by [data-theme]). */ -}}
+<header class="head">
+  <div class="head__inner">
+    <a class="brand" href="{{ "" | absLangURL }}" accesskey="h" title="{{ site.Title }} (Alt + H)">{{ site.Title }}</a>
+
+    <nav class="nav" aria-label="{{ i18n "nav_label" | default "Main navigation" }}">
+      {{- $currentPage := . }}
+      {{- range site.Menus.main }}
+      {{- $url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL)) | absLangURL }}
+      {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
+      <a class="nav__link" href="{{ $url }}"
+        {{- if eq $url $currentPage.Permalink }} aria-current="page"{{ end }}
+        {{- if $is_search }} accesskey="/" title="{{ .Name }} (Alt + /)"{{ end }}>
+        {{- .Name -}}
+      </a>
+      {{- end }}
+
+      {{- /* Language switch: deep-link to the translation of the current page
+             when it exists, otherwise to the other language's home. */}}
+      {{- if hugo.IsMultilingual }}
+      {{- $curr := . }}
+      {{- range site.Home.AllTranslations }}
+      {{- if ne .Lang $curr.Lang }}
+      {{- $target := . }}
+      {{- range $curr.Translations }}{{ if eq .Lang $target.Lang }}{{ $target = . }}{{ end }}{{ end }}
+      <span class="nav__sep" aria-hidden="true"></span>
+      <a class="nav__link" href="{{ $target.Permalink }}" lang="{{ .Lang }}"
+        title="{{ .Language.LanguageName }}">{{ .Lang | upper }}</a>
+      {{- end }}
+      {{- end }}
+      {{- end }}
+
+      {{- if not site.Params.disableThemeToggle }}
+      <span class="nav__sep" aria-hidden="true"></span>
+      <button id="theme-toggle" class="iconbtn" accesskey="t" title="(Alt + T)"
+        aria-label="{{ i18n "toggle_theme" | default "Toggle theme" }}">
+        <svg class="i-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="i-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+      {{- end }}
+    </nav>
+  </div>
+</header>

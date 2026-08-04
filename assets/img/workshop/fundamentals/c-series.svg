@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" height="340">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0c10"/>
+      <stop offset="100%" style="stop-color:#141821"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="340" fill="url(#bg)"/>
+  <!-- Terminal-like code snippet -->
+  <g transform="translate(40, 40)" font-family="IBM Plex Mono, monospace" font-size="12" fill="#dee4ed">
+    <rect x="0" y="0" width="520" height="260" rx="4" fill="#0e1116" stroke="#1d222c" stroke-width="1"/>
+    <text x="16" y="28" fill="#22d3ee">// C Programming Fundamentals</text>
+    <text x="16" y="52" fill="#7dd3fc">#include</text> <text x="90" y="52" fill="#86efac"><stdio.h></text>
+    <text x="16" y="80" fill="#22d3ee">// Pointer arithmetic & memory layout</text>
+    <text x="16" y="104" fill="#e2e8f0">void</text> <text x="60" y="104" fill="#fbbf24">vuln_func</text><text fill="#97a1b0">(</text><text fill="#a5b4fc">char</text> <text fill="#e2e8f0">*</text><text fill="#fbbf24">input</text><text fill="#97a1b0">)</text>
+    <text x="16" y="128" fill="#97a1b0">{</text>
+    <text x="32" y="152" fill="#e2e8f0">char</text> <text fill="#a5b4fc">buf</text><text fill="#97a1b0">[</text><text fill="#fbbf24">64</text><text fill="#97a1b0">];</text>
+    <text x="32" y="176" fill="#7dd3fc">strcpy</text><text fill="#97a1b0">(</text><text fill="#fbbf24">buf</text><text fill="#97a1b0">,</text> <text fill="#fbbf24">input</text><text fill="#97a1b0">);</text> <text x="240" y="176" fill="#5f6978">// BOF</text>
+    <text x="16" y="200" fill="#97a1b0">}</text>
+    <text x="16" y="232" fill="#e2e8f0">int</text> <text x="52" y="232" fill="#fbbf24">main</text><text fill="#97a1b0">()</text> <text fill="#97a1b0">{</text> <text fill="#7dd3fc">return</text> <text fill="#fbbf24">0</text><text fill="#97a1b0">;</text> <text fill="#97a1b0">}</text>
+  </g>
+  <text x="300" y="320" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5f6978" text-anchor="middle">Figure (1): Excerpt from the C programming lessons</text>
+</svg>

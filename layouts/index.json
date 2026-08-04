@@ -1,0 +1,11 @@
+{{- /* Fuse.js search index, one per language (home output "JSON").
+       Carried over from PaperMod's index.json since the theme is no longer
+       loaded; assets/js/fastsearch.js fetches ../index.json relative to the
+       /<lang>/search/ page, so this must exist for every language home. */ -}}
+{{- $index := slice -}}
+{{- range site.RegularPages -}}
+    {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) -}}
+        {{- $index = $index | append (dict "title" .Title "content" .Plain "permalink" .Permalink "summary" .Summary) -}}
+    {{- end -}}
+{{- end -}}
+{{- $index | jsonify -}}

@@ -1,0 +1,66 @@
+{{- define "main" }}
+{{- /* Section listing (e.g. /posts/). Markup contract: .pagehead header,
+       .rows/.row list, .pager pagination — all defined in the CSS. */ -}}
+
+{{- if not .IsHome }}
+{{- partial "crumb.html" . }}
+<header class="pagehead">
+  <h1 class="pagehead__title">
+    {{ .Title }}
+    {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
+    {{- with .OutputFormats.Get "rss" }}
+    <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="18" style="vertical-align:middle">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+    {{- end }}
+    {{- end }}
+  </h1>
+  {{- with .Description }}<p class="pagehead__desc">{{ . | markdownify }}</p>{{ end }}
+</header>
+{{- end }}
+
+{{- if .Content }}
+<div class="prose" style="margin-bottom:2rem">
+  {{ .Content }}
+</div>
+{{- end }}
+
+{{- $pages := union .RegularPages .Sections }}
+{{- $paginator := .Paginate $pages }}
+
+{{- if $paginator.Pages }}
+<div class="rows">
+  {{- range $paginator.Pages }}
+  <a class="row" href="{{ .RelPermalink }}">
+    {{- if not .Date.IsZero }}
+    <time class="row__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    {{- else }}<span class="row__date"></span>{{ end }}
+    <div>
+      <span class="row__title">{{ with .Params.hex }}<span class="mono">{{ . }}</span> {{ end }}{{ .Title }}</span>
+      {{- with .Description }}<span class="row__desc">{{ . }}</span>
+      {{- else }}{{ with .Summary }}<span class="row__desc">{{ . | plainify | truncate 160 }}</span>{{ end }}{{ end }}
+    </div>
+  </a>
+  {{- end }}
+</div>
+{{- else }}
+<p class="prose">{{ i18n "empty_section" | default "Nothing here yet." }}</p>
+{{- end }}
+
+{{- if gt $paginator.TotalPages 1 }}
+<nav class="pager" aria-label="pagination">
+  {{- if $paginator.HasPrev }}
+  <a href="{{ $paginator.Prev.URL | absURL }}">« {{ i18n "prev_page" | default "Prev" }}</a>
+  {{- else }}<span></span>{{ end }}
+  {{- if $paginator.HasNext }}
+  <a href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" | default "Next" }} »</a>
+  {{- else }}<span></span>{{ end }}
+</nav>
+{{- end }}
+
+{{- end }}{{- /* end main */ -}}

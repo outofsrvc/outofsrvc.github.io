@@ -1,0 +1,48 @@
+{{- if .IsHome -}}
+{{- $sameAs := slice -}}
+{{- with site.Params.schema.sameAs -}}
+  {{- range . }}{{ $sameAs = $sameAs | append (strings.TrimSpace .) }}{{ end -}}
+{{- else -}}
+  {{- range site.Params.socialIcons }}{{ $sameAs = $sameAs | append (strings.TrimSpace .url) }}{{ end -}}
+{{- end -}}
+{{- $publisher := dict
+  "@context" "https://schema.org"
+  "@type" (site.Params.schema.publisherType | default "Organization" | title)
+  "name" site.Title
+  "url" site.Home.Permalink
+  "description" (site.Params.description | plainify | truncate 180)
+  "logo" (site.Params.assets.favicon | default "favicon.ico" | absURL)
+  "sameAs" $sameAs
+-}}
+<script type="application/ld+json">{{ $publisher | jsonify | safeJS }}</script>
+{{- else if or .IsPage .IsSection -}}
+{{- $items := slice -}}
+{{- $ancestors := .Ancestors.Reverse -}}
+{{- range $ancestors -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" (add (len $items) 1) "name" .LinkTitle "item" .Permalink) -}}
+{{- end -}}
+{{- $items = $items | append (dict "@type" "ListItem" "position" (add (len $items) 1) "name" .LinkTitle "item" .Permalink) -}}
+{{- $breadcrumbs := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $items -}}
+<script type="application/ld+json">{{ $breadcrumbs | jsonify | safeJS }}</script>
+{{- if .IsPage -}}
+{{- $keywords := .Params.keywords | default .Params.tags | default slice -}}
+{{- $author := .Params.author | default site.Params.author -}}
+{{- $articleType := cond (eq .Section "workshop") "TechArticle" "BlogPosting" -}}
+{{- $article := dict
+  "@context" "https://schema.org"
+  "@type" $articleType
+  "headline" (.Title | plainify)
+  "name" (.Title | plainify)
+  "description" ((.Description | default .Summary) | plainify)
+  "keywords" $keywords
+  "wordCount" .WordCount
+  "inLanguage" .Language.Lang
+  "datePublished" (.PublishDate.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "author" (dict "@type" "Person" "name" $author)
+  "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  "publisher" (dict "@type" (site.Params.schema.publisherType | default "Organization" | title) "name" site.Title "logo" (dict "@type" "ImageObject" "url" (site.Params.assets.favicon | default "favicon.ico" | absURL)))
+-}}
+<script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
+{{- end -}}
+{{- end -}}

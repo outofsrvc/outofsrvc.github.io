@@ -1,28 +1,38 @@
 ---
 title: "About"
-date: 2026-01-01
-draft: false
-description: "About P01NT"
+description: "P01NT — Technical researcher specializing in reverse engineering, malware analysis, and low-level systems."
+translationKey: "about"
+ShowReadingTime: false
+ShowWordCount: false
+ShowShareButtons: false
+ShowBreadCrumbs: false
 ---
 
-# About
+I'm **P01NT** ([@outofsrvc](https://github.com/outofsrvc)), a technical researcher specializing in reverse engineering, malware analysis, and low-level systems.
 
-**P01NT** — Reverse Engineer & Low-level Systems Developer.
+My focus is on dissecting executables (PE Format), analyzing malware encryption, and studying system behavior. I created the **Entry P01NT** workshop to make reverse engineering and disassembly concepts approachable. I have also published many technical articles that have exceeded **10,000+ views** on the [**Arab Shell Network**](https://sh3ll.cloud/xf2/members/4161/).
 
-## Technical Interests
+This blog is where I write down what I learn: technical articles, analyses, and a complete teaching workshop.
 
-- **Reverse Engineering**: Software analysis, code deconstruction, algorithm understanding
-- **Operating Systems**: Windows Internals, Linux Kernel
-- **Cybersecurity**: Malware analysis, vulnerability research, memory exploitation
-- **Low-level Programming**: Assembly (x86/x64/ARM), C/C++, Rust
-- **Analysis Tools**: IDA Pro, Ghidra, WinDbg, x64dbg, Frida
+---
 
-## Notable Projects
+## The Entry-P01NT Workshop
 
-- **Entry-P01NT** — Comprehensive reverse engineering workshop in Arabic and English
-- Various technical research in malware analysis and memory vulnerabilities
+The larger part of this site is the [**Entry-P01NT workshop**](/en/workshop/) — an open-source educational initiative built to make reverse engineering and malware analysis approachable, and to close the gap between theory and practice.
 
-## Contact
+It is meant to be the bridge from a surface-level knowledge of programming to a deep understanding of how systems actually work, and how software talks to the hardware and the operating system in machine code. In short, it aims to:
+
+- Break down the fear of assembly and of complex analysis tooling.
+- Provide practical labs for learning through trial and error.
+- Build the mindset of a reverse engineer — someone not satisfied with knowing *how* a program works, but *why* it works that way.
+
+I designed the workshop as a distillation of my own learning path — the reference I wish had existed when I started.
+
+---
+
+## Contact & Contributing
+
+The workshop repository is open to everyone on [GitHub](https://github.com/outofsrvc/entry-p01nt), and suggestions or corrections are always welcome.
 
 - **GitHub**: [@outofsrvc](https://github.com/outofsrvc)
 - **Twitter/X**: [@outofsrvc](https://twitter.com/outofsrvc)

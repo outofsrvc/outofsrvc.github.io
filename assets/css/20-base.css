@@ -1,0 +1,385 @@
+/* ============================================================================
+   P01NT — base typography + page shell
+   Chrome (nav, labels, metadata, hex indices) is always monospace: it is Latin
+   and numeric in both languages. Prose switches typeface by direction.
+   ========================================================================= */
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: var(--t-base);
+    line-height: 1.65;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Arabic prose needs a different face, more leading and a touch more size to
+   optically match the Latin stack. */
+html[dir="rtl"] body {
+    font-family: var(--arabic);
+    font-size: var(--t-md);
+    line-height: 1.95;
+}
+
+/* Latin runs embedded in Arabic (tool names, mnemonics, hex, code) must be
+   isolated or the bidi algorithm drags surrounding punctuation with them. */
+html[dir="rtl"] code,
+html[dir="rtl"] kbd,
+html[dir="rtl"] samp,
+html[dir="rtl"] .ltr {
+    unicode-bidi: isolate;
+    direction: ltr;
+}
+
+html[dir="rtl"] pre {
+    direction: ltr;
+    text-align: left;
+}
+
+/* Monospace chrome — never switches with language. */
+.mono,
+.label,
+.meta,
+.hex,
+nav,
+.crumb,
+time {
+    font-family: var(--mono);
+    font-variant-ligatures: none;
+}
+
+/* Small capitalised section label: the recurring structural motif. */
+.label {
+    font-size: var(--t-xs);
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+}
+
+/* ---------- Shell -------------------------------------------------------- */
+.shell {
+    width: 100%;
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+.main {
+    flex: 1 0 auto;
+    width: 100%;
+    padding-block: clamp(2rem, 5vw, 3.5rem);
+}
+
+/* ---------- Header ------------------------------------------------------- */
+.head {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--head-h);
+    display: flex;
+    align-items: center;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    border-bottom: var(--hair) solid var(--line);
+}
+
+.head__inner {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+.brand {
+    font-family: var(--mono);
+    font-size: .95rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--fg);
+    display: inline-flex;
+    align-items: center;
+    gap: .1rem;
+    direction: ltr;
+}
+
+/* Blinking block cursor after the wordmark. */
+.brand::after {
+    content: "";
+    display: inline-block;
+    width: .5ch;
+    height: 1.05em;
+    margin-inline-start: .15rem;
+    background: var(--accent);
+    animation: blink 1.15s steps(1) infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: .15rem;
+    margin-inline-start: auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.nav::-webkit-scrollbar {
+    display: none;
+}
+
+.nav__link {
+    font-family: var(--mono);
+    font-size: var(--t-sm);
+    color: var(--fg-2);
+    padding: .3rem .55rem;
+    border-radius: var(--r);
+    white-space: nowrap;
+    transition: color .15s, background .15s;
+}
+
+.nav__link:hover {
+    color: var(--fg);
+    background: var(--bg-3);
+}
+
+.nav__link[aria-current="page"] {
+    color: var(--accent);
+}
+
+.nav__sep {
+    width: var(--hair);
+    height: 16px;
+    background: var(--line-2);
+    margin-inline: .35rem;
+    flex: none;
+}
+
+.iconbtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--r);
+    color: var(--fg-2);
+    transition: color .15s, background .15s;
+}
+
+.iconbtn:hover {
+    color: var(--fg);
+    background: var(--bg-3);
+}
+
+.iconbtn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Sun in dark mode, moon in light mode. */
+#theme-toggle .i-sun {
+    display: none;
+}
+
+[data-theme="dark"] #theme-toggle .i-sun {
+    display: block;
+}
+
+[data-theme="dark"] #theme-toggle .i-moon {
+    display: none;
+}
+
+/* ---------- Footer ------------------------------------------------------- */
+.foot {
+    border-top: var(--hair) solid var(--line);
+    padding-block: 1.5rem 2rem;
+    margin-top: 3rem;
+}
+
+.foot__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem 1.25rem;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    color: var(--fg-3);
+}
+
+.foot__inner a {
+    color: var(--fg-2);
+}
+
+.foot__inner a:hover {
+    color: var(--accent);
+}
+
+.foot__spacer {
+    margin-inline-start: auto;
+}
+
+/* ---------- Back to top -------------------------------------------------- */
+.totop {
+    position: fixed;
+    inset-block-end: 1.25rem;
+    inset-inline-end: 1.25rem;
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: var(--hair) solid var(--line-2);
+    border-radius: var(--r);
+    background: var(--bg-2);
+    color: var(--fg-2);
+    opacity: 1;
+    transition: opacity .2s, transform .2s, color .15s, border-color .15s;
+}
+
+.totop:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.totop.hidden {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+}
+
+.totop svg {
+    width: 15px;
+    height: 15px;
+}
+
+/* ---------- Rules & section headers -------------------------------------- */
+/* `── LABEL ────────────────────────── action →` */
+.rule {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    margin-bottom: 1.25rem;
+}
+
+.rule::after {
+    content: "";
+    flex: 1 1 auto;
+    height: var(--hair);
+    background: var(--line);
+}
+
+.rule__link {
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    color: var(--fg-3);
+    letter-spacing: .06em;
+    transition: color .15s;
+    white-space: nowrap;
+}
+
+.rule__link:hover {
+    color: var(--accent);
+}
+
+/* ---------- Page header -------------------------------------------------- */
+.pagehead {
+    margin-bottom: 2rem;
+}
+
+.pagehead__title {
+    font-size: var(--t-xl);
+    font-weight: 600;
+    letter-spacing: -.015em;
+    line-height: 1.2;
+}
+
+html[dir="rtl"] .pagehead__title {
+    letter-spacing: 0;
+}
+
+.pagehead__desc {
+    margin-top: .5rem;
+    color: var(--fg-2);
+    font-size: var(--t-base);
+    max-width: var(--measure);
+}
+
+/* ---------- Breadcrumb as a filesystem path ------------------------------ */
+.crumb {
+    font-size: var(--t-xs);
+    color: var(--fg-3);
+    margin-bottom: .9rem;
+    direction: ltr;
+    text-align: start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+}
+
+html[dir="rtl"] .crumb {
+    justify-content: flex-end;
+}
+
+.crumb a:hover {
+    color: var(--accent);
+}
+
+/* ---------- Links in prose ----------------------------------------------- */
+a.link,
+.prose a {
+    color: var(--accent);
+    border-bottom: var(--hair) solid color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: border-color .15s, color .15s;
+}
+
+.prose a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* ---------- Tag chips ---------------------------------------------------- */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+}
+
+.chip {
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    color: var(--fg-2);
+    background: var(--bg-2);
+    border: var(--hair) solid var(--line);
+    border-radius: var(--r);
+    padding: .18rem .5rem;
+    direction: ltr;
+    transition: color .15s, border-color .15s, background .15s;
+}
+
+.chip:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-bg);
+}
+
+.chip__n {
+    color: var(--fg-3);
+    margin-inline-start: .35rem;
+}

@@ -1,0 +1,12 @@
+{{- /* Post metadata, monospace and LTR in both languages. */ -}}
+{{- if not .Date.IsZero }}
+<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+{{- end }}
+{{- if .Param "ShowReadingTime" }}
+<span>·</span>
+<span>{{ i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime) }}</span>
+{{- end }}
+{{- if .Param "ShowWordCount" }}
+<span>·</span>
+<span>{{ i18n "words" .WordCount | default (printf "%d words" .WordCount) }}</span>
+{{- end }}

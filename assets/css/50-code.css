@@ -1,0 +1,281 @@
+/* ============================================================================
+   P01NT — code blocks + syntax highlighting
+   PaperMod's chroma stylesheet is no longer loaded, so the token palette is
+   defined here for both themes. Hugo emits classes (markup.highlight.noClasses
+   = false), which is what makes theme-aware highlighting possible at all.
+   ========================================================================= */
+
+/* ---------- Inline code -------------------------------------------------- */
+.prose :not(pre)>code {
+    font-family: var(--mono);
+    font-size: .875em;
+    background: var(--bg-3);
+    border: var(--hair) solid var(--line);
+    border-radius: 2px;
+    padding: .1em .35em;
+    color: var(--fg);
+}
+
+/* ---------- Block container ---------------------------------------------- */
+.prose .highlight,
+.prose pre {
+    position: relative;
+    background: var(--code-bg);
+    border: var(--hair) solid var(--line);
+    border-radius: var(--r);
+}
+
+.prose .highlight {
+    margin-block: 1.4em;
+}
+
+.prose .highlight pre,
+.prose pre {
+    overflow-x: auto;
+    padding: .9rem 1rem;
+    font-family: var(--mono);
+    font-size: var(--t-sm);
+    line-height: 1.7;
+    tab-size: 4;
+}
+
+.prose .highlight pre {
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    background: transparent;
+}
+
+.prose pre code {
+    background: none;
+    border: 0;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+}
+
+/* Thin scrollbar inside code blocks. */
+.prose pre::-webkit-scrollbar {
+    height: 6px;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+    background: var(--line-2);
+    border-radius: 3px;
+}
+
+/* ---------- Copy button -------------------------------------------------- */
+.copy-code {
+    position: absolute;
+    inset-block-start: 6px;
+    inset-inline-end: 6px;
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    background: var(--bg-3);
+    border: var(--hair) solid var(--line);
+    border-radius: 2px;
+    padding: .15rem .45rem;
+    opacity: 0;
+    transition: opacity .15s, color .15s, border-color .15s;
+}
+
+.prose .highlight:hover .copy-code,
+.copy-code:focus-visible {
+    opacity: 1;
+}
+
+.copy-code:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ---------- Line numbers ------------------------------------------------- */
+.chroma .lnt,
+.chroma .ln {
+    color: var(--fg-3);
+    opacity: .6;
+    margin-inline-end: .7rem;
+    user-select: none;
+}
+
+.chroma .hl {
+    background: var(--accent-bg);
+    display: block;
+}
+
+/* ---------- Token palette: dark ------------------------------------------ */
+.chroma {
+    color: var(--fg);
+}
+
+.chroma .c,
+.chroma .ch,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs,
+.chroma .cp,
+.chroma .cpf {
+    color: var(--fg-3);
+    font-style: italic;
+}
+
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr,
+.chroma .ow {
+    color: #7dd3fc;
+}
+
+.chroma .kt,
+.chroma .nb,
+.chroma .bp,
+.chroma .nc,
+.chroma .nn,
+.chroma .ne {
+    color: #22d3ee;
+}
+
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s2,
+.chroma .se,
+.chroma .sh,
+.chroma .si,
+.chroma .sx,
+.chroma .sr,
+.chroma .s1,
+.chroma .ss {
+    color: #86efac;
+}
+
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo {
+    color: #fbbf24;
+}
+
+.chroma .nf,
+.chroma .fm,
+.chroma .nd {
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+.chroma .na,
+.chroma .nt,
+.chroma .nl {
+    color: #a5b4fc;
+}
+
+.chroma .nv,
+.chroma .vc,
+.chroma .vg,
+.chroma .vi,
+.chroma .vm,
+.chroma .no {
+    color: var(--fg);
+}
+
+.chroma .o,
+.chroma .p {
+    color: var(--fg-2);
+}
+
+.chroma .err {
+    color: var(--red);
+}
+
+.chroma .gd {
+    color: var(--red);
+}
+
+.chroma .gi {
+    color: var(--green);
+}
+
+.chroma .gh,
+.chroma .gu {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.chroma .gs {
+    font-weight: 600;
+}
+
+.chroma .ge {
+    font-style: italic;
+}
+
+/* ---------- Token palette: light ----------------------------------------- */
+[data-theme="light"] .chroma .k,
+[data-theme="light"] .chroma .kc,
+[data-theme="light"] .chroma .kd,
+[data-theme="light"] .chroma .kn,
+[data-theme="light"] .chroma .kp,
+[data-theme="light"] .chroma .kr,
+[data-theme="light"] .chroma .ow {
+    color: #0550ae;
+}
+
+[data-theme="light"] .chroma .kt,
+[data-theme="light"] .chroma .nb,
+[data-theme="light"] .chroma .bp,
+[data-theme="light"] .chroma .nc,
+[data-theme="light"] .chroma .nn,
+[data-theme="light"] .chroma .ne {
+    color: #0b7285;
+}
+
+[data-theme="light"] .chroma .s,
+[data-theme="light"] .chroma .sa,
+[data-theme="light"] .chroma .sb,
+[data-theme="light"] .chroma .sc,
+[data-theme="light"] .chroma .dl,
+[data-theme="light"] .chroma .sd,
+[data-theme="light"] .chroma .s2,
+[data-theme="light"] .chroma .se,
+[data-theme="light"] .chroma .sh,
+[data-theme="light"] .chroma .si,
+[data-theme="light"] .chroma .sx,
+[data-theme="light"] .chroma .sr,
+[data-theme="light"] .chroma .s1,
+[data-theme="light"] .chroma .ss {
+    color: #0a7d3f;
+}
+
+[data-theme="light"] .chroma .m,
+[data-theme="light"] .chroma .mb,
+[data-theme="light"] .chroma .mf,
+[data-theme="light"] .chroma .mh,
+[data-theme="light"] .chroma .mi,
+[data-theme="light"] .chroma .il,
+[data-theme="light"] .chroma .mo {
+    color: #a8590a;
+}
+
+[data-theme="light"] .chroma .nf,
+[data-theme="light"] .chroma .fm,
+[data-theme="light"] .chroma .nd {
+    color: #1f2328;
+}
+
+[data-theme="light"] .chroma .na,
+[data-theme="light"] .chroma .nt,
+[data-theme="light"] .chroma .nl {
+    color: #4338ca;
+}

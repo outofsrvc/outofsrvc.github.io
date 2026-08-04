@@ -59,7 +59,7 @@ defaultContentLanguageInSubdir = true
     safari_pinned_tab = "/safari-pinned-tab.svg"
     disableFingerprinting = false
 
-  images = ["/assets/img/avatar.svg"]
+  images = ["/assets/img/avatar.jpg"]
 
   socialIcons = [
     { name = "github", url = "https://github.com/outofsrvc", title = "GitHub" },
@@ -82,7 +82,7 @@ defaultContentLanguageInSubdir = true
   # Home identity block. Replaces PaperMod's profileMode, which is no longer
   # used — layouts/index.html renders the home page itself.
   [params.hero]
-    avatar = "/assets/img/avatar.svg"
+    avatar = "/assets/img/avatar.jpg"
 
 # ---------- Arabic (default, served under /ar/) ----------
 [languages.ar]
@@ -95,7 +95,7 @@ defaultContentLanguageInSubdir = true
   [languages.ar.params]
     description = "مدونة P01NT التقنية — هندسة عكسية، أنظمة منخفضة المستوى، وأمن برمجيات."
     [languages.ar.params.hero]
-      avatar = "/assets/img/avatar.svg"
+      avatar = "/assets/img/avatar.jpg"
       name = "P01NT"
       role = "مهندس عكسي ومطور أنظمة منخفضة المستوى"
       bio = "أكتب هنا عن الهندسة العكسية وتحليل البرمجيات الخبيثة وما يجري تحت طبقة التجريد. الموقع يضم أيضاً ورشة Entry-P01NT كاملة."
@@ -136,7 +136,7 @@ defaultContentLanguageInSubdir = true
   [languages.en.params]
     description = "P01NT Technical Blog — Reverse Engineering, Low-level Systems, Software Security."
     [languages.en.params.hero]
-      avatar = "/assets/img/avatar.svg"
+      avatar = "/assets/img/avatar.jpg"
       name = "P01NT"
       role = "Reverse Engineer & Low-level Developer"
       bio = "I write about reverse engineering, malware analysis, and what happens beneath the abstraction layer. This site also hosts the full Entry-P01NT workshop."

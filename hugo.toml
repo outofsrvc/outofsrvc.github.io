@@ -98,7 +98,7 @@ defaultContentLanguageInSubdir = true
       avatar = "/assets/img/avatar.jpg"
       name = "P01NT"
       role = "مهندس عكسي ومطور أنظمة منخفضة المستوى"
-      bio = "أكتب هنا عن الهندسة العكسية وتحليل البرمجيات الخبيثة وما يجري تحت طبقة التجريد. الموقع يضم أيضاً ورشة Entry-P01NT كاملة."
+      bio = "أكتب عن الهندسة العكسية وتطوير البرمجيات الخبيثة"
   [[languages.ar.menu.main]]
     identifier = "workshop"
     name = "الورشة"

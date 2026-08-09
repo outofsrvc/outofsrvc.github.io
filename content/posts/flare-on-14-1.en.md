@@ -10,7 +10,7 @@ ShowToc: true
 draft: false
 ---
 
-In the name of Allah, the Most Gracious, the Most Merciful.
+بسم الله
 
 In this article, we are going to solve the first challenge of **Flare-On (2014)**. We will rely — for this challenge and for most of the upcoming ones — on the **Just-in-Time Learning** methodology, also known as **Learning-by-Doing**.
 

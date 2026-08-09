@@ -139,7 +139,7 @@ defaultContentLanguageInSubdir = true
       avatar = "/assets/img/avatar.jpg"
       name = "P01NT"
       role = "Reverse Engineer & Low-level Developer"
-      bio = "I write about reverse engineering, malware analysis, and what happens beneath the abstraction layer. This site also hosts the full Entry-P01NT workshop."
+      bio = "I write about reverse engineering and malware development."
   [[languages.en.menu.main]]
     identifier = "workshop"
     name = "Workshop"

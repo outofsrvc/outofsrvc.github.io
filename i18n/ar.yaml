@@ -215,6 +215,39 @@
 - id: cw_stage_desc_advanced
   translation: "دخول الـ Assembly فعلياً: التمرير بالمرجع، النطاقات وstatic، الهياكل والاتحادات، والمعالج المسبق."
 
+# ---------- C for Malware Development ----------
+- id: home_cmw
+  translation: "تطوير البرمجيات الخبيثة بـ C"
+
+- id: mw_eyebrow
+  translation: "تطوير البرمجيات الخبيثة بلغة C — منظور عملي"
+
+- id: mw_start
+  translation: "ابدأ من"
+
+- id: mw_done_title
+  translation: "أتممت سلسلة تطوير البرمجيات الخبيثة بـ C — عُد إلى المنهج لما بعده"
+
+- id: mw_stage_short_basics
+  translation: "الأساسيات"
+- id: mw_stage_short_internals
+  translation: "ويندوز والأنظمة"
+- id: mw_stage_short_tradecraft
+  translation: "التقنيات"
+
+- id: mw_stage_title_basics
+  translation: "المرحلة الأولى — أساسيات اللغة والبيئة"
+- id: mw_stage_desc_basics
+  translation: "إعداد بيئة التطوير ومراجعة أساسيات C: المؤشرات، الذاكرة الديناميكية، والبنى."
+- id: mw_stage_title_internals
+  translation: "المرحلة الثانية — ويندوز والأنظمة"
+- id: mw_stage_desc_internals
+  translation: "التعامل مع واجهة برمجة تطبيقات ويندوز، العمليات، والذاكرة على مستوى النظام."
+- id: mw_stage_title_tradecraft
+  translation: "المرحلة الثالثة — تقنيات البرمجيات الخبيثة"
+- id: mw_stage_desc_tradecraft
+  translation: "تقنيات الحقن، التخفي، والاستمرارية وتطبيقها عملياً بلغة C."
+
 # ---------- Architecture series ----------
 - id: home_carch
   translation: "معمارية الحاسوب"

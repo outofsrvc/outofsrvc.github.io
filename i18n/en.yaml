@@ -213,6 +213,39 @@
 - id: cw_stage_desc_advanced
   translation: "Real assembly work: passing by reference, scopes and static, structs and unions, and the preprocessor."
 
+# ---------- C for Malware Development ----------
+- id: home_cmw
+  translation: "C for Malware Dev"
+
+- id: mw_eyebrow
+  translation: "Malware development in C — a hands-on track"
+
+- id: mw_start
+  translation: "Start at"
+
+- id: mw_done_title
+  translation: "C malware-dev series complete — back to the curriculum for what's next"
+
+- id: mw_stage_short_basics
+  translation: "Basics"
+- id: mw_stage_short_internals
+  translation: "Windows & Systems"
+- id: mw_stage_short_tradecraft
+  translation: "Tradecraft"
+
+- id: mw_stage_title_basics
+  translation: "Stage 1 — Language & Environment Basics"
+- id: mw_stage_desc_basics
+  translation: "Set up the dev environment and revisit C fundamentals: pointers, dynamic memory, and structures."
+- id: mw_stage_title_internals
+  translation: "Stage 2 — Windows & Systems"
+- id: mw_stage_desc_internals
+  translation: "Working with the Windows API, processes, and memory at the system level."
+- id: mw_stage_title_tradecraft
+  translation: "Stage 3 — Malware Tradecraft"
+- id: mw_stage_desc_tradecraft
+  translation: "Injection, evasion, and persistence techniques applied practically in C."
+
 # ---------- Architecture series ----------
 - id: home_carch
   translation: "Computer Arch"

@@ -1,6 +1,6 @@
 ---
 title: "بحث"
-description: "ابحث في مقالات المدونة ودروس ورشة Entry-P01NT."
+description: "ابحث في مقالات المدونة ودروس ورشة نوقطة-الدخول."
 layout: "search"
 translationKey: "search"
 summary: "search"

@@ -31,7 +31,7 @@ To be a developer or a researcher in this field, you must possess a strong progr
 
 And since, in reverse engineering, we will be dealing with software at a middle level close to hardware (Middle-Level), we must have experience with the C/C++ language, which we discussed in an extended series where we explained its most precise details.
 
-🔗 [C Programming Series on the Shell Network](https://sh3ll.cloud/xf2/threads/4059/)
+🔗 [C Programming Series on the blog](/en/cworkshop/)
 
 ![Lesson from the C language series](/assets/img/workshop/fundamentals/c-series.png)
 _Figure (1): Excerpt from the C programming lessons._
@@ -46,7 +46,7 @@ Certainly, we cannot take anything apart in life without understanding its desig
 
 We have therefore prepared a series explaining in detail how the computer operates, in order to build this deep understanding.
 
-🔗 [Computer Architecture Series on the Shell Network](https://sh3ll.cloud/xf2/threads/4148/)
+🔗 [Computer Architecture Series on the blog](/en/arch/)
 
 ![Lesson from the computer architecture series](/assets/img/workshop/fundamentals/arch-series.png)
 _Figure (2): Excerpt from the computer architecture lessons._
@@ -59,7 +59,7 @@ _Figure (2): Excerpt from the computer architecture lessons._
 
 Given our direct interaction with software, we must understand how the operating system interacts with processes (Processes), how it organizes them, and what role the processor and memory play therein. We have prepared a series explaining the most important matters that we must be familiar with in this regard.
 
-🔗 [Operating Systems Concepts Series on the Shell Network](https://sh3ll.cloud/xf2/threads/4230/)
+🔗 [Operating Systems Concepts Series on the blog](/en/os/)
 
 ![Lesson from the operating systems series](/assets/img/workshop/fundamentals/os-series.png)
 _Figure (3): Excerpt from the operating systems lessons._
@@ -88,7 +88,7 @@ Because when reverse engineering any program, we are dealing with executable cod
 
 But this code can be disassembled (Disassemble) so that it appears in a readable language, namely Assembly. We have therefore prepared a complete series dedicated to the x86 Assembly language.
 
-🔗 [x86 Assembly Language Series on the Shell Network](https://sh3ll.cloud/xf2/threads/4305/)
+🔗 [x86 Assembly Language Series on the blog](/en/asm/)
 
 ![Lesson from the assembly language series](/assets/img/workshop/fundamentals/asm-series.png)
 _Figure (5): Excerpt from the x86 Assembly lessons._

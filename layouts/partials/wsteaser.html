@@ -1,0 +1,42 @@
+{{- /* Reusable workshop teaser for the home page.
+       Expects a dict: ws (section page), prefix ("ws" | "cw" — i18n key
+       prefix for stage names), label (rule label text), stages (ordered
+       slice, optional — sections without stages pass none and the stage
+       cards are skipped entirely).
+       Labs count only renders when the section actually has labs. */}}
+{{- $ws := .ws }}
+{{- $prefix := .prefix }}
+{{- $stages := .stages }}
+{{- $lessons := $ws.RegularPages.ByWeight }}
+{{- $labs := where $lessons "Params.lab" "!=" nil }}
+<section class="block">
+  <div class="rule">
+    <span class="label">{{ .label }}</span>
+    <a class="rule__link" href="{{ $ws.RelPermalink }}">{{ i18n "home_view_curriculum" | default "curriculum" }} →</a>
+  </div>
+
+  <div class="wsteaser">
+    <div class="wsteaser__top">
+      <a class="wsteaser__name" href="{{ $ws.RelPermalink }}">{{ $ws.Title }}</a>
+      <span class="wsteaser__facts">
+        {{ i18n "ws_count_lessons" (len $lessons) }}{{ if $labs }} · {{ i18n "home_labs" (len $labs) }}{{ end }}
+      </span>
+    </div>
+    {{- with $ws.Description }}<p class="wsteaser__desc">{{ . }}</p>{{ end }}
+    {{- with $stages }}
+    <div class="wsteaser__stages">
+      {{- range $stage := . }}
+      {{- $g := where $lessons "Params.stage" $stage }}
+      {{- if $g }}
+      <div class="stagecard" data-stage="{{ $stage }}">
+        <span class="stagecard__name">{{ i18n (printf "%s_stage_short_%s" $prefix $stage) }}</span>
+        <span class="stagecard__n">
+          {{- (index $g 0).Params.hex }} – {{ (index $g (sub (len $g) 1)).Params.hex }}
+        </span>
+      </div>
+      {{- end }}
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+</section>

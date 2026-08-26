@@ -1,0 +1,56 @@
+{{- define "main" }}
+{{- /* C workshop curriculum index. Same data-driven contract as
+       workshop/list.html: lessons order by weight, group by stage — adding a
+       lesson needs no template change. No labs in this series. */ -}}
+{{- $lessons := .RegularPages.ByWeight }}
+{{- $stages := slice "basics" "memory" "advanced" }}
+{{- $first := "" }}{{ with $lessons }}{{ $first = index . 0 }}{{ end }}
+
+<section class="wsbanner">
+  <span class="label">{{ i18n "cw_eyebrow" }}</span>
+  <h1 class="wsbanner__name">{{ .Title }}</h1>
+  {{- with .Description }}<p class="wsbanner__desc">{{ . }}</p>{{ end }}
+
+  <div class="wsbanner__facts">
+    <span class="fact"><b>{{ len $lessons }}</b> {{ i18n "ws_stat_lessons" }}</span>
+    <span class="fact"><b>{{ len $stages }}</b> {{ i18n "ws_stat_stages" }}</span>
+  </div>
+
+  <div class="wsbanner__cta">
+    {{- with $first }}
+    <a class="btn btn--primary" href="{{ .RelPermalink }}">{{ i18n "cw_start" }} {{ .Params.hex }}</a>
+    {{- end }}
+  </div>
+</section>
+
+{{- with .Content }}
+<div class="prose" style="margin-bottom:2.5rem">{{ . }}</div>
+{{- end }}
+
+{{- range $stage := $stages }}
+{{- $group := where $lessons "Params.stage" $stage }}
+{{- with $group }}
+<section class="wsstage" data-stage="{{ $stage }}">
+  <header class="wsstage__head">
+    <span class="wsstage__tag">{{ i18n (printf "cw_stage_short_%s" $stage) }}</span>
+    <h2 class="wsstage__title">{{ i18n (printf "cw_stage_title_%s" $stage) }}</h2>
+    <span class="wsstage__count">{{ i18n "ws_count_lessons" (len .) }}</span>
+  </header>
+  <p class="wsstage__desc">{{ i18n (printf "cw_stage_desc_%s" $stage) }}</p>
+
+  <div class="wslist">
+    {{- range . }}
+    <a class="wsrow" href="{{ .RelPermalink }}">
+      <span class="wsrow__hex">{{ .Params.hex }}</span>
+      <span class="wsrow__title">{{ .Title }}</span>
+      <span class="wsrow__right">
+        <span>{{ i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime) }}</span>
+      </span>
+      {{- with .Description }}<span class="wsrow__desc">{{ . }}</span>{{ end }}
+    </a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+{{- end }}
+{{- end }}

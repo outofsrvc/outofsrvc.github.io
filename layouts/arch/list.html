@@ -1,0 +1,40 @@
+{{- define "main" }}
+{{- /* Architecture series index. A flat, ordered reading list — the series is
+       theoretical and has no pedagogical stages. Lessons order by weight;
+       adding one needs no template change. */ -}}
+{{- $lessons := .RegularPages.ByWeight }}
+{{- $first := "" }}{{ with $lessons }}{{ $first = index . 0 }}{{ end }}
+
+<section class="wsbanner">
+  <span class="label">{{ i18n "ca_eyebrow" }}</span>
+  <h1 class="wsbanner__name">{{ .Title }}</h1>
+  {{- with .Description }}<p class="wsbanner__desc">{{ . }}</p>{{ end }}
+
+  <div class="wsbanner__facts">
+    <span class="fact"><b>{{ len $lessons }}</b> {{ i18n "ws_stat_lessons" }}</span>
+  </div>
+
+  <div class="wsbanner__cta">
+    {{- with $first }}
+    <a class="btn btn--primary" href="{{ .RelPermalink }}">{{ i18n "ca_start" }} {{ .Params.hex }}</a>
+    {{- end }}
+  </div>
+</section>
+
+{{- with .Content }}
+<div class="prose" style="margin-bottom:2.5rem">{{ . }}</div>
+{{- end }}
+
+<div class="wslist">
+  {{- range $lessons }}
+  <a class="wsrow" href="{{ .RelPermalink }}">
+    <span class="wsrow__hex">{{ .Params.hex }}</span>
+    <span class="wsrow__title">{{ .Title }}</span>
+    <span class="wsrow__right">
+      <span>{{ i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime) }}</span>
+    </span>
+    {{- with .Description }}<span class="wsrow__desc">{{ . }}</span>{{ end }}
+  </a>
+  {{- end }}
+</div>
+{{- end }}

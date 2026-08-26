@@ -90,6 +90,19 @@
     --stage: var(--red);
 }
 
+/* C workshop uses its own stage names over the same accent system. */
+[data-stage="basics"] {
+    --stage: var(--green);
+}
+
+[data-stage="memory"] {
+    --stage: var(--amber);
+}
+
+[data-stage="advanced"] {
+    --stage: var(--red);
+}
+
 ::selection {
     background: var(--sel);
     color: var(--fg);

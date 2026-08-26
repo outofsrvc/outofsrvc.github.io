@@ -778,6 +778,37 @@ html[dir="rtl"] #searchResults .entry-link svg {
     color: var(--fg-2);
 }
 
+/* ---------- Collapsible solutions ----------------------------------------- */
+.prose details {
+    border: var(--hair) solid var(--line);
+    border-radius: var(--r);
+    background: var(--bg-2);
+    margin: 1.1rem 0;
+}
+
+.prose details>summary {
+    cursor: pointer;
+    padding: .55rem .9rem;
+    font-family: var(--mono);
+    font-size: var(--t-xs);
+    letter-spacing: .1em;
+    color: var(--accent);
+    list-style: none;
+}
+
+.prose details>summary::-webkit-details-marker {
+    display: none;
+}
+
+.prose details[open]>summary {
+    border-bottom: var(--hair) solid var(--line);
+    margin-bottom: .6rem;
+}
+
+.prose details[open] {
+    padding-bottom: .5rem;
+}
+
 /* ---------- Responsive --------------------------------------------------- */
 @media (max-width: 720px) {
 

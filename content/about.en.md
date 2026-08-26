@@ -1,6 +1,6 @@
 ---
 title: "About"
-description: "P01NT — Technical researcher specializing in reverse engineering, malware analysis, and low-level systems."
+description: "P01NT (@outofsrvc) — Technical researcher specializing in reverse engineering, malware development, and low-level systems on the Windows platform."
 translationKey: "about"
 ShowReadingTime: false
 ShowWordCount: false
@@ -8,25 +8,11 @@ ShowShareButtons: false
 ShowBreadCrumbs: false
 ---
 
-I'm **P01NT** ([@outofsrvc](https://github.com/outofsrvc)), a technical researcher specializing in reverse engineering, malware analysis, and low-level systems.
+I'm **P01NT** ([@outofsrvc](https://github.com/outofsrvc)), a technical researcher specializing in reverse engineering, malware development, and low-level systems.
 
-My focus is on dissecting executables (PE Format), analyzing malware encryption, and studying system behavior. I created the **Entry P01NT** workshop to make reverse engineering and disassembly concepts approachable. I have also published many technical articles that have exceeded **10,000+ views** on the [**Arab Shell Network**](https://sh3ll.cloud/xf2/members/4161/).
+My focus is on the **Windows** environment, where I work on dissecting executables (PE), analyzing malware behavior and its encryption/obfuscation mechanisms, and understanding how code interacts with the kernel and user-mode. My passion is uncovering what a binary hides behind its interfaces, and reading the machine in its native language. I'm also interested in the **Flare-On** challenges and malware development in **C**.
 
 This blog is where I write down what I learn: technical articles, analyses, and a complete teaching workshop.
-
----
-
-## The Entry-P01NT Workshop
-
-The larger part of this site is the [**Entry-P01NT workshop**](/en/workshop/) — an open-source educational initiative built to make reverse engineering and malware analysis approachable, and to close the gap between theory and practice.
-
-It is meant to be the bridge from a surface-level knowledge of programming to a deep understanding of how systems actually work, and how software talks to the hardware and the operating system in machine code. In short, it aims to:
-
-- Break down the fear of assembly and of complex analysis tooling.
-- Provide practical labs for learning through trial and error.
-- Build the mindset of a reverse engineer — someone not satisfied with knowing *how* a program works, but *why* it works that way.
-
-I designed the workshop as a distillation of my own learning path — the reference I wish had existed when I started.
 
 ---
 

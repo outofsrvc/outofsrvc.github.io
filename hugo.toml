@@ -30,7 +30,7 @@ defaultContentLanguageInSubdir = true
   disableThemeToggle = false
 
   # Only blog articles feed the home/recent listings; workshop lessons live
-  # in their own curriculum section and would otherwise flood the feed.
+  # in their own curriculum sections and would otherwise flood the feed.
   mainSections = ["posts"]
 
   ShowReadingTime = true
@@ -99,16 +99,44 @@ defaultContentLanguageInSubdir = true
       name = "P01NT"
       role = "مهندس عكسي ومطور أنظمة منخفضة المستوى"
       bio = "أكتب عن الهندسة العكسية وتطوير البرمجيات الخبيثة"
+
+  # Menu order mirrors the Start Here roadmap:
+  # Arch -> OS -> C -> ASM -> Entry-P01NT workshop.
+  [[languages.ar.menu.main]]
+    identifier = "start"
+    name = "ابدأ من هنا"
+    url = "start/"
+    weight = 5
+  [[languages.ar.menu.main]]
+    identifier = "arch"
+    name = "معمارية الحاسوب"
+    url = "arch/"
+    weight = 10
+  [[languages.ar.menu.main]]
+    identifier = "os"
+    name = "أنظمة التشغيل"
+    url = "os/"
+    weight = 11
+  [[languages.ar.menu.main]]
+    identifier = "cworkshop"
+    name = "لغة C"
+    url = "cworkshop/"
+    weight = 12
+  [[languages.ar.menu.main]]
+    identifier = "asm"
+    name = "لغة التجميع"
+    url = "asm/"
+    weight = 13
   [[languages.ar.menu.main]]
     identifier = "workshop"
-    name = "الورشة"
+    name = "نوقطة-الدخول"
     url = "workshop/"
-    weight = 10
+    weight = 14
   [[languages.ar.menu.main]]
     identifier = "posts"
     name = "المقالات"
     url = "posts/"
-    weight = 20
+    weight = 15
   [[languages.ar.menu.main]]
     identifier = "about"
     name = "عني"
@@ -140,16 +168,44 @@ defaultContentLanguageInSubdir = true
       name = "P01NT"
       role = "Reverse Engineer & Low-level Developer"
       bio = "I write about reverse engineering and malware development."
+
+  # Menu order mirrors the Start Here roadmap:
+  # Arch -> OS -> C -> ASM -> Entry-P01NT workshop.
+  [[languages.en.menu.main]]
+    identifier = "start"
+    name = "Start Here"
+    url = "start/"
+    weight = 5
+  [[languages.en.menu.main]]
+    identifier = "arch"
+    name = "Computer Arch"
+    url = "arch/"
+    weight = 10
+  [[languages.en.menu.main]]
+    identifier = "os"
+    name = "OS Concepts"
+    url = "os/"
+    weight = 11
+  [[languages.en.menu.main]]
+    identifier = "cworkshop"
+    name = "C Lang"
+    url = "cworkshop/"
+    weight = 12
+  [[languages.en.menu.main]]
+    identifier = "asm"
+    name = "Assembly"
+    url = "asm/"
+    weight = 13
   [[languages.en.menu.main]]
     identifier = "workshop"
-    name = "Workshop"
+    name = "Entry-P01NT"
     url = "workshop/"
-    weight = 10
+    weight = 14
   [[languages.en.menu.main]]
     identifier = "posts"
     name = "Posts"
     url = "posts/"
-    weight = 20
+    weight = 15
   [[languages.en.menu.main]]
     identifier = "about"
     name = "About"

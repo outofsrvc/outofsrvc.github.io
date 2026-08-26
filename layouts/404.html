@@ -3,7 +3,7 @@
   <p class="nf__code">404</p>
   <p class="nf__msg">{{ i18n "not_found" | default "segmentation fault — page not found" }}</p>
   <p style="margin-top:1.5rem">
-    <a class="btn" href="{{ "" | absLangURL }}">{{ i18n "home" | default "Home" }}</a>
+    <a class="btn" href="{{ "" | relLangURL }}">{{ i18n "home" | default "Home" }}</a>
   </p>
 </div>
 {{- end }}

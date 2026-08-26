@@ -68,7 +68,7 @@
 
 # ---------- Home ----------
 - id: home_workshop
-  translation: "Workshop"
+  translation: "Entry-P01NT"
 
 - id: home_labs
   translation:
@@ -171,3 +171,83 @@
 
 - id: ws_done_dir
   translation: "The end"
+
+# ---------- C Workshop ----------
+- id: home_cworkshop
+  translation: "C Lang"
+
+- id: cw_eyebrow
+  translation: "C from a reverse engineer's perspective"
+
+- id: cw_start
+  translation: "Start at"
+
+- id: cw_done_title
+  translation: "C workshop complete — back to the curriculum for what's next"
+
+# ---------- C Workshop: stages ----------
+- id: cw_stage_short_basics
+  translation: "Basics"
+
+- id: cw_stage_short_memory
+  translation: "Memory"
+
+- id: cw_stage_short_advanced
+  translation: "Advanced"
+
+- id: cw_stage_title_basics
+  translation: "Stage 1 — Language Foundations"
+
+- id: cw_stage_desc_basics
+  translation: "From compilation stages to arrays and strings: the structure everything else builds on, each concept tied to its footprint in the binary."
+
+- id: cw_stage_title_memory
+  translation: "Stage 2 — Functions & Memory"
+
+- id: cw_stage_desc_memory
+  translation: "The heart of the series: functions, pointers, bitwise operators, then the Stack and Heap anatomy down to dynamic allocation and its exploits."
+
+- id: cw_stage_title_advanced
+  translation: "Stage 3 — Low-level & Advanced Types"
+
+- id: cw_stage_desc_advanced
+  translation: "Real assembly work: passing by reference, scopes and static, structs and unions, and the preprocessor."
+
+# ---------- Architecture series ----------
+- id: home_carch
+  translation: "Computer Arch"
+
+- id: ca_eyebrow
+  translation: "Computer architecture & organization through the RE lens"
+
+- id: ca_start
+  translation: "Start at"
+
+- id: ca_done_title
+  translation: "Architecture series complete — back to the curriculum for what's next"
+
+# ---------- OS concepts series ----------
+- id: home_os
+  translation: "OS Concepts"
+
+- id: os_eyebrow
+  translation: "Operating system concepts through the RE lens"
+
+- id: os_start
+  translation: "Start at"
+
+- id: os_done_title
+  translation: "OS concepts series complete — back to the curriculum for what's next"
+
+# ---------- Assembly series ----------
+- id: home_asm
+  translation: "Assembly"
+
+- id: asm_eyebrow
+  translation: "x86 & x86-64 assembly, written live inside IDA"
+
+- id: asm_start
+  translation: "Start at"
+
+- id: asm_done_title
+  translation: "Assembly series complete — back to the curriculum for what's next"

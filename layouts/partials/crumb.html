@@ -2,7 +2,7 @@
        Always LTR — it is a path, not prose. */ -}}
 {{- if and (.Param "ShowBreadCrumbs") (not .IsHome) }}
 <nav class="crumb" aria-label="breadcrumb">
-    <a href="{{ "" | absLangURL }}">~</a>
+    <a href="{{ "" | relLangURL }}">~</a>
     {{- range .Ancestors.Reverse }}
     {{- if not .IsHome }}
     <span aria-hidden="true">/</span>

@@ -68,7 +68,7 @@
 
 # ---------- Home ----------
 - id: home_workshop
-  translation: "الورشة"
+  translation: "نوقطة-الدخول"
 
 - id: home_labs
   translation:
@@ -173,3 +173,83 @@
 
 - id: ws_done_dir
   translation: "النهاية"
+
+# ---------- C Workshop ----------
+- id: home_cworkshop
+  translation: "لغة C"
+
+- id: cw_eyebrow
+  translation: "ورشة لغة C بمنظور الهندسة العكسية"
+
+- id: cw_start
+  translation: "ابدأ من"
+
+- id: cw_done_title
+  translation: "أتممت ورشة C — عُد إلى المنهج لما بعده"
+
+# ---------- C Workshop: stages ----------
+- id: cw_stage_short_basics
+  translation: "الأساسيات"
+
+- id: cw_stage_short_memory
+  translation: "الذاكرة"
+
+- id: cw_stage_short_advanced
+  translation: "متقدم"
+
+- id: cw_stage_title_basics
+  translation: "المرحلة الأولى — أساسيات اللغة"
+
+- id: cw_stage_desc_basics
+  translation: "من مراحل الترجمة إلى المصفوفات والسلاسل النصية: البنية التي يُبنى عليها كل ما بعدها، وكل مفهوم مربوط بأثره في الـ binary."
+
+- id: cw_stage_title_memory
+  translation: "المرحلة الثانية — الدوال والذاكرة"
+
+- id: cw_stage_desc_memory
+  translation: "قلب السلسلة: الدوال والمؤشرات والعوامل البتية، ثم بنية Stack وHeap حتى التخصيص الديناميكي وثغراته."
+
+- id: cw_stage_title_advanced
+  translation: "المرحلة الثالثة — مستوى منخفض وأنواع متقدمة"
+
+- id: cw_stage_desc_advanced
+  translation: "دخول الـ Assembly فعلياً: التمرير بالمرجع، النطاقات وstatic، الهياكل والاتحادات، والمعالج المسبق."
+
+# ---------- Architecture series ----------
+- id: home_carch
+  translation: "معمارية الحاسوب"
+
+- id: ca_eyebrow
+  translation: "معمارية وتنظيم الحاسوب بمنظور الهندسة العكسية"
+
+- id: ca_start
+  translation: "ابدأ من"
+
+- id: ca_done_title
+  translation: "أتممت سلسلة المعمارية — عُد إلى المنهج لما بعده"
+
+# ---------- OS concepts series ----------
+- id: home_os
+  translation: "أنظمة التشغيل"
+
+- id: os_eyebrow
+  translation: "مفاهيم أنظمة التشغيل بمنظور الهندسة العكسية"
+
+- id: os_start
+  translation: "ابدأ من"
+
+- id: os_done_title
+  translation: "أتممت سلسلة أنظمة التشغيل — عُد إلى المنهج لما بعده"
+
+# ---------- Assembly series ----------
+- id: home_asm
+  translation: "لغة التجميع"
+
+- id: asm_eyebrow
+  translation: "لغة التجميع x86 وx86-64 بالكتابة داخل IDA"
+
+- id: asm_start
+  translation: "ابدأ من"
+
+- id: asm_done_title
+  translation: "أتممت سلسلة التجميع — عُد إلى المنهج لما بعده"

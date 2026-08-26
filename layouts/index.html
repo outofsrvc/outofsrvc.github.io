@@ -1,7 +1,4 @@
 {{- define "main" }}
-{{- $ws := site.GetPage "/workshop" }}
-{{- $lessons := slice }}
-{{- with $ws }}{{ $lessons = .RegularPages.ByWeight }}{{ end }}
 {{- $posts := where site.RegularPages "Section" "posts" }}
 {{- $hero := site.Params.hero }}
 
@@ -23,38 +20,24 @@
   </div>
 </section>
 
-{{- /* Workshop teaser */}}
-{{- with $ws }}
-{{- $labs := where $lessons "Params.lab" "!=" nil }}
-<section class="block">
-  <div class="rule">
-    <span class="label">{{ i18n "home_workshop" | default "Workshop" }}</span>
-    <a class="rule__link" href="{{ .RelPermalink }}">{{ i18n "home_view_curriculum" | default "curriculum" }} →</a>
-  </div>
-
-  <div class="wsteaser">
-    <div class="wsteaser__top">
-      <a class="wsteaser__name" href="{{ .RelPermalink }}">{{ .Title }}</a>
-      <span class="wsteaser__facts">
-        {{ i18n "ws_count_lessons" (len $lessons) }} · {{ i18n "home_labs" (len $labs) }}
-      </span>
-    </div>
-    {{- with .Description }}<p class="wsteaser__desc">{{ . }}</p>{{ end }}
-    <div class="wsteaser__stages">
-      {{- range $stage := slice "foundations" "deep-dive" "practice" }}
-      {{- $g := where $lessons "Params.stage" $stage }}
-      {{- if $g }}
-      <div class="stagecard" data-stage="{{ $stage }}">
-        <span class="stagecard__name">{{ i18n (printf "ws_stage_short_%s" $stage) }}</span>
-        <span class="stagecard__n">
-          {{- (index $g 0).Params.hex }} – {{ (index $g (sub (len $g) 1)).Params.hex }}
-        </span>
-      </div>
-      {{- end }}
-      {{- end }}
-    </div>
-  </div>
-</section>
+{{- /* Curriculum teasers — ordered exactly as the Start Here roadmap:
+       Arch → OS → C → ASM → Entry workshop. */}}
+{{- with site.GetPage "/arch" }}
+{{- partial "wsteaser.html" (dict "ws" . "prefix" "ca" "label" (i18n "home_carch" | default "Computer Arch")) }}
+{{- end }}
+{{- with site.GetPage "/os" }}
+{{- if .RegularPages }}
+{{- partial "wsteaser.html" (dict "ws" . "prefix" "os" "label" (i18n "home_os" | default "OS Concepts")) }}
+{{- end }}
+{{- end }}
+{{- with site.GetPage "/cworkshop" }}
+{{- partial "wsteaser.html" (dict "ws" . "prefix" "cw" "label" (i18n "home_cworkshop" | default "C Lang") "stages" (slice "basics" "memory" "advanced")) }}
+{{- end }}
+{{- with site.GetPage "/asm" }}
+{{- partial "wsteaser.html" (dict "ws" . "prefix" "asm" "label" (i18n "home_asm" | default "Assembly")) }}
+{{- end }}
+{{- with site.GetPage "/workshop" }}
+{{- partial "wsteaser.html" (dict "ws" . "prefix" "ws" "label" (i18n "home_workshop" | default "Workshop") "stages" (slice "foundations" "deep-dive" "practice")) }}
 {{- end }}
 
 {{- /* Recent posts */}}
@@ -62,7 +45,7 @@
 <section class="block">
   <div class="rule">
     <span class="label">{{ i18n "home_recent" | default "Recent" }}</span>
-    <a class="rule__link" href="{{ "posts/" | absLangURL }}">{{ i18n "home_all_posts" | default "all posts" }} →</a>
+    <a class="rule__link" href="{{ "posts/" | relLangURL }}">{{ i18n "home_all_posts" | default "all posts" }} →</a>
   </div>
   <div class="rows">
     {{- range first 6 . }}
@@ -86,7 +69,7 @@
   </div>
   <div class="chips">
     {{- range $name, $terms := . }}
-    <a class="chip" href="{{ (printf "tags/%s/" ($name | urlize)) | absLangURL }}">{{ $name }}<span class="chip__n">{{ len $terms }}</span></a>
+    <a class="chip" href="{{ (printf "tags/%s/" ($name | urlize)) | relLangURL }}">{{ $name }}<span class="chip__n">{{ len $terms }}</span></a>
     {{- end }}
   </div>
 </section>

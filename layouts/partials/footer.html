@@ -4,7 +4,7 @@
 {{- if not (.Param "hideFooter") }}
 <footer class="foot">
   <div class="shell foot__inner">
-    <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
+    <span>&copy; {{ now.Year }} <a href="{{ "" | relLangURL }}">{{ site.Title }}</a></span>
     <span class="foot__spacer"></span>
     <span>
       Powered by
@@ -54,6 +54,38 @@
             localStorage.setItem("pref-theme", 'dark');
         }
     })
+</script>
+{{- end }}
+
+{{- if (.Param "enableHoverPrefetch" | default true) }}
+{{- /* Speculative prefetch: hovering/focusing an internal link fetches the
+       target page in the background, so the actual navigation renders from
+       cache. Skipped on save-data / 2g connections. */}}
+<script>
+    (function () {
+        var conn = null;
+        try { conn = navigator.connection; } catch (e) {}
+        if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ""))) return;
+        var seen = Object.create(null);
+        function queue(el) {
+            if (!el || !el.href) return;
+            var u;
+            try { u = new URL(el.href); } catch (e) { return; }
+            if (u.origin !== location.origin || seen[u.pathname]) return;
+            if (/\/index\.xml$|\.xml$|\.zip$|\.7z$/.test(u.pathname)) return;
+            seen[u.pathname] = 1;
+            var l = document.createElement("link");
+            l.rel = "prefetch";
+            l.href = u.pathname + u.search;
+            document.head.appendChild(l);
+        }
+        document.addEventListener("pointerover", function (e) {
+            queue(e.target.closest("a[href]"));
+        }, { passive: true });
+        document.addEventListener("focusin", function (e) {
+            queue(e.target.closest ? e.target.closest("a[href]") : null);
+        }, { passive: true });
+    })();
 </script>
 {{- end }}
 

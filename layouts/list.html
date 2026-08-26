@@ -55,10 +55,10 @@
 {{- if gt $paginator.TotalPages 1 }}
 <nav class="pager" aria-label="pagination">
   {{- if $paginator.HasPrev }}
-  <a href="{{ $paginator.Prev.URL | absURL }}">« {{ i18n "prev_page" | default "Prev" }}</a>
+  <a href="{{ $paginator.Prev.URL }}">« {{ i18n "prev_page" | default "Prev" }}</a>
   {{- else }}<span></span>{{ end }}
   {{- if $paginator.HasNext }}
-  <a href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" | default "Next" }} »</a>
+  <a href="{{ $paginator.Next.URL }}">{{ i18n "next_page" | default "Next" }} »</a>
   {{- else }}<span></span>{{ end }}
 </nav>
 {{- end }}

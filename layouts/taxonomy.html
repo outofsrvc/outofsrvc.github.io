@@ -16,7 +16,7 @@
   {{- $type := .Type }}
   {{- range $key, $value := .Data.Terms.Alphabetical }}
   {{- with site.GetPage (printf "/%s/%s" $type .Name) }}
-  <a class="chip" href="{{ .Permalink }}">{{ .LinkTitle }}<span class="chip__n">{{ $value.Count }}</span></a>
+  <a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}<span class="chip__n">{{ $value.Count }}</span></a>
   {{- end }}
   {{- end }}
 </div>

@@ -4,13 +4,13 @@
 {{- if and (gt (len $pages) 1) (in $pages .) }}
 <nav class="pn" aria-label="post navigation">
   {{- with $pages.Next . }}
-  <a class="pn__item pn__item--prev" href="{{ .Permalink }}">
+  <a class="pn__item pn__item--prev" href="{{ .RelPermalink }}">
     <span class="pn__dir">{{ i18n "prev_page" | default "Previous" }}</span>
     <span class="pn__title">{{ .Title }}</span>
   </a>
   {{- end }}
   {{- with $pages.Prev . }}
-  <a class="pn__item pn__item--next" href="{{ .Permalink }}">
+  <a class="pn__item pn__item--next" href="{{ .RelPermalink }}">
     <span class="pn__dir">{{ i18n "next_page" | default "Next" }}</span>
     <span class="pn__title">{{ .Title }}</span>
   </a>

@@ -3,15 +3,15 @@
        theme icons .i-sun / .i-moon switched by [data-theme]). */ -}}
 <header class="head">
   <div class="head__inner">
-    <a class="brand" href="{{ "" | absLangURL }}" accesskey="h" title="{{ site.Title }} (Alt + H)">{{ site.Title }}</a>
+    <a class="brand" href="{{ "" | relLangURL }}" accesskey="h" title="{{ site.Title }} (Alt + H)">{{ site.Title }}</a>
 
     <nav class="nav" aria-label="{{ i18n "nav_label" | default "Main navigation" }}">
       {{- $currentPage := . }}
       {{- range site.Menus.main }}
-      {{- $url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL)) | absLangURL }}
+      {{- $url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL)) | relLangURL }}
       {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
       <a class="nav__link" href="{{ $url }}"
-        {{- if eq $url $currentPage.Permalink }} aria-current="page"{{ end }}
+        {{- if eq $url $currentPage.RelPermalink }} aria-current="page"{{ end }}
         {{- if $is_search }} accesskey="/" title="{{ .Name }} (Alt + /)"{{ end }}>
         {{- .Name -}}
       </a>
@@ -26,7 +26,7 @@
       {{- $target := . }}
       {{- range $curr.Translations }}{{ if eq .Lang $target.Lang }}{{ $target = . }}{{ end }}{{ end }}
       <span class="nav__sep" aria-hidden="true"></span>
-      <a class="nav__link" href="{{ $target.Permalink }}" lang="{{ .Lang }}"
+      <a class="nav__link" href="{{ $target.RelPermalink }}" lang="{{ .Lang }}"
         title="{{ .Language.LanguageName }}">{{ .Lang | upper }}</a>
       {{- end }}
       {{- end }}

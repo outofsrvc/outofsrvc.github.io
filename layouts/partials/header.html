@@ -19,7 +19,7 @@
 
       {{- /* Language switch: deep-link to the translation of the current page
              when it exists, otherwise to the other language's home. */}}
-      {{- if hugo.IsMultilingual }}
+      {{- if site.IsMultiLingual }}
       {{- $curr := . }}
       {{- range site.Home.AllTranslations }}
       {{- if ne .Lang $curr.Lang }}
